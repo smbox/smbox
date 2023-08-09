@@ -117,6 +117,6 @@ if __name__ == "__main__":
     logger.log(f'-------------Starting SMBOX')
     logger.log(f'Initial configuration schema: {cfg_schema}', 'DEBUG')
 
-    optimiser = Optimise(config)
-    optimiser.SMBOXOptimise(data_all, cfg_schema, _random_seed)
+    optimiser = Optimise(config, _random_seed)
+    optimiser.SMBOXOptimise(data_all, cfg_schema)
 

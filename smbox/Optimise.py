@@ -13,17 +13,17 @@ from Utils import Logger
 from ParamSpace import ParamSpace
 
 logger = Logger()
-RANDOM_SEED = 42
 
 class Optimise:
 
-    def __init__(self, config):
+    def __init__(self, config, random_seed):
 
         self.config = config
         self.output_root = config['output_root']
+        self.random_seed = random_seed
 
-    @staticmethod
-    def create_population(cfg_schema, population_size, random_seed=42):
+
+    def create_population(self, cfg_schema, population_size):
         """
         Create population of candiate hyper parameter configurations.
         :param cfg_schema. hyper parameterr schema
@@ -31,8 +31,8 @@ class Optimise:
         :return population. dictionary of population candiate configurations.
         """
 
-        np.random.seed(random_seed)
-        random.seed(random_seed)
+        np.random.seed(self.random_seed)
+        random.seed(self.random_seed)
         try:
             tune_params_schema = cfg_schema['tune']
             tune_params = list(cfg_schema['tune'].keys())
@@ -71,8 +71,8 @@ class Optimise:
 
         return population
 
-    @staticmethod
-    def objective(cfg, data):
+
+    def objective(self, cfg, data):
         from sklearn.ensemble import RandomForestClassifier
         from xgboost import XGBClassifier
         from sklearn.model_selection import cross_validate
@@ -87,13 +87,12 @@ class Optimise:
             float: Fitness score.
     
         """
-        #if self.config['algorithm'] == 'xgb':
-        #    model = XGBClassifier(**cfg, random_state=RANDOM_SEED)
-        #elif self.config['algorithm'] == 'rf':
-        #    model = RandomForestClassifier(**cfg, random_state=RANDOM_SEED)
-        model = RandomForestClassifier(**cfg, random_state=42)
-        #else:
-            #raise ValueError("No algorithm provided.")
+        if self.config['algorithm'] == 'xgb':
+            model = XGBClassifier(**cfg, random_state=42)
+        elif self.config['algorithm'] == 'rf':
+            model = RandomForestClassifier(**cfg, random_state=42)
+        else:
+            raise ValueError("No algorithm provided.")
 
         cv_results = cross_validate(model,
                                     data['X_train'],
@@ -107,7 +106,7 @@ class Optimise:
 
         return perf
 
-    def evaluate_population(population, data, trial_counter=0, verbose=False):
+    def evaluate_population(self, population, data, trial_counter=0):
         """
         Evaluate a set of hyperparameter configurations (also known as population).
 
@@ -115,7 +114,6 @@ class Optimise:
             population (list): A list of hyperparameter configurations.
             data (dict): Dataset split into train and test sets.
             trial_counter (int): A starting count of the number of configurations evaluated.
-            verbose (int): Verbose indicator (0 = False, 1 = True).
 
         Returns:
             pd.DataFrame: DataFrame containing the evaluation results.
@@ -134,7 +132,9 @@ class Optimise:
                 break
 
             cfg = population[i]  # Parameters to be evaluated
-            perf = Optimise.objective(cfg, data)
+            optimiser = Optimise(self.config, self.random_seed)
+            perf = optimiser.objective(cfg, data)
+            #perf = Optimise.objective(cfg, data)
 
             _row = list(population[i].values()) + [perf, i + trial_counter, time.time() - t_start]
             df.loc[i] = _row
@@ -142,8 +142,8 @@ class Optimise:
 
         return df, time_status
 
-    @staticmethod
-    def create_lowfidelity_dataset(data, sample_ratio=0.05, random_state=42):
+
+    def create_lowfidelity_dataset(self, data, sample_ratio=0.05):
         """
         Create a low fidelity training dataset by downsampling the original dataset.
 
@@ -160,7 +160,7 @@ class Optimise:
         X_train, X_ignore, y_train, y_ignore = train_test_split(data["X_train"],
                                                                 data["y_train"],
                                                                 train_size=sample_ratio,
-                                                                random_state=random_state)
+                                                                random_state=self.random_seed)
 
         data_temp = data.copy()
         data_temp["X_train"], data_temp["y_train"] = X_train, y_train  # Overwrite training data with downsampled
@@ -230,7 +230,7 @@ class Optimise:
              "param_hash", "config_hash", "run_key"]]
 
 
-    def save_output(self, output_root, _df_trials=pd.DataFrame(), _df_holdout=pd.DataFrame(), wallclock_dict=None):
+    def save_output(self, _df_trials=pd.DataFrame(), _df_holdout=pd.DataFrame(), wallclock_dict=None):
         """
         Save the output data to files.
 
@@ -245,31 +245,31 @@ class Optimise:
 
         """
 
-        if not os.path.exists(output_root):
-            os.makedirs(output_root)
+        if not os.path.exists(self.output_root):
+            os.makedirs(self.output_root)
         timestamp = datetime.now().strftime("%Y_%m_%d_%H%M%S")
 
         # Save trial data if provided
         if not _df_trials.empty:
-            output_path = f"{output_root}trials_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.csv"
-            _df_trials.to_csv(output_path, index=False)
-            logger.log(f'Trial output saved to: {output_path}')
+            output_path = f"{self.output_root}trials_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.csv"
+            _df_trials.to_csv(self.output_path, index=False)
+            logger.log(f'Trial output saved to: {self.output_path}')
 
         # Save holdout test set result data if provided
         if not _df_holdout.empty:
-            output_path = f"{output_root}_run_log_holdout_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.csv"
-            _df_holdout.to_csv(output_path, index=False)
-            logger.log(f'Output saved to: {output_path}')
+            output_path = f"{self.output_root}_run_log_holdout_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.csv"
+            _df_holdout.to_csv(self.output_path, index=False)
+            logger.log(f'Output saved to: {self.output_path}')
 
         # Save wall clock data if provided
         if wallclock_dict is not None:
-            output_path = f"{output_root}wallclock_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.json"
-            with open(output_path, 'w') as fp:
+            output_path = f"{self.output_root}wallclock_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.json"
+            with open(self.output_path, 'w') as fp:
                 json.dump(wallclock_dict, fp)
-                logger.log(f'Wall clock data saved to: {output_path}')
+                logger.log(f'Wall clock data saved to: {self.output_path}')
 
-    @staticmethod
-    def fit_response_surface_model(cfg_schema, population_fitness_history, params):
+
+    def fit_response_surface_model(self, cfg_schema, population_fitness_history, params):
         """
             Fits a response surface model using CatBoostRegressor to predict the fitness value of a given set of hyperparameters.
 
@@ -357,7 +357,7 @@ class Optimise:
         return new_cfgs
 
 
-    def SMBOXOptimise(self, data_all, cfg_schema, _random_seed):
+    def SMBOXOptimise(self, data_all, cfg_schema):
         """
         This function performs the SMBOX search routine experiment. SMBOX is a strategy to
         optimize hyperparameters of machine learning models using sequential model-based
@@ -380,6 +380,7 @@ class Optimise:
 
         The function ends by saving output and indicating completion of the run.
         """
+        optimiser = Optimise(self.config, self.random_seed)
 
         wallclock_seconds = self.config['wallclock']
         logger.log(f"Starting run for: {self.config['dataset']}, for {wallclock_seconds} seconds")
@@ -401,16 +402,16 @@ class Optimise:
         if search_strategy_config_['lf_init_ratio'] == 1.0:
             data_low_fidelity = data_all.copy()
         else:
-            data_low_fidelity = Optimise.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_init_ratio'], _random_seed)
-        population_candidates = Optimise.create_population(cfg_schema, search_strategy_config_['lf_init_n'])
+            data_low_fidelity = optimiser.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_init_ratio'],)
+        population_candidates = optimiser.create_population(cfg_schema, search_strategy_config_['lf_init_n'])
         population = ParamSpace.feasiable_check(cfg_schema, population_candidates)
-        population_fitness, time_status = Optimise.evaluate_population(population, data_low_fidelity)
+        population_fitness, time_status = optimiser.evaluate_population(population, data_low_fidelity)
         logger.log('Completed initialization', 'DEBUG')
         if search_strategy_config_['lf_ratio'] == 1.00:
             data = data_all
         else:
             logger.log('Sampling to generate low fidelity training dataset', 'DEBUG')
-            data = Optimise.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_ratio'], _random_seed)
+            data = optimiser.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_ratio'])
 
         # Create history table
         population_fitness_history = population_fitness.copy()
@@ -427,9 +428,9 @@ class Optimise:
         while time_status == 'OK':
             gen += 1
             # Fitting response model
-            regressor = Optimise.fit_response_surface_model(cfg_schema, population_fitness_history, params)
+            regressor = optimiser.fit_response_surface_model(cfg_schema, population_fitness_history, params)
             # Identify best population candidates
-            population_candidates = Optimise.create_population(cfg_schema, 50000)
+            population_candidates = optimiser.create_population(cfg_schema, 50000)
             population_candidates = ParamSpace.feasiable_check(cfg_schema, population_candidates)
             df_population_candidates = pd.DataFrame(population_candidates)
             # Check against cache to remove any already calculated params configurations
@@ -458,14 +459,14 @@ class Optimise:
             if search_strategy_config_['inc_pseudo_rand'] == 'Y':
                 logger.log('Generating pseudo random cfgs', 'DEBUG')
                 anchor_cfgs = population_fitness_history[params].head(2)
-                df_pseudo_rand_population_candiates = Optimise.anchor_new_cfgs(cfg_schema, anchor_cfgs, generate_n=1,
+                df_pseudo_rand_population_candidates = Optimise.anchor_new_cfgs(cfg_schema, anchor_cfgs, generate_n=1,
                                                                       expore_alpha=0.25)
-                df_pseudo_rand_population_candiates['param'] = df_pseudo_rand_population_candiates.to_dict(orient='records')
-                pseudo_rand_population = list(df_pseudo_rand_population_candiates['param'])
+                df_pseudo_rand_population_candidates['param'] = df_pseudo_rand_population_candidates.to_dict(orient='records')
+                pseudo_rand_population = list(df_pseudo_rand_population_candidates['param'])
                 population = population + pseudo_rand_population
 
             # Evaluate the best
-            population_fitness, time_status = Optimise.evaluate_population(population, data,
+            population_fitness, time_status = optimiser.evaluate_population(population, data,
                                                                   trial_counter=len(population_fitness_history))
             population_fitness["gen"] = gen
 
@@ -486,10 +487,9 @@ class Optimise:
         #log(f'Test set performance: {test_perf}')
 
         # save output
-        optimise_instance = Optimise(self.config)  # replace config_value with your desired config
-        df_trials = optimise_instance.format_trials_output(cfg_schema, population_fitness_history)
+        df_trials = optimiser.format_trials_output(cfg_schema, population_fitness_history)
         #df_holdout = Optimise.format_best_trial_output(test_perf, best_params)
-        #optimise_instance.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
-        optimise_instance.save_output(self.output_root, _df_trials=df_trials)
+        #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
+        optimiser.save_output(self.output_root, _df_trials=df_trials)
 
         logger.log('RUN COMPLETE')
