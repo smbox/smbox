@@ -67,41 +67,39 @@ if __name__ == "__main__":
     from Utils import Logger
     from ParamSpace import ParamSpace
     from Optimise import Optimise
+    from smbox_config import smbox_params
 
     logger = Logger()
 
     ##---- config
-    search_strategy_config_ = {'lf_init_ratio': 0.3
-        , 'lf_init_n': 35
-        , 'lf_ratio': 1.00
-        , 'alpha_n': 2
-        , 'inc_rand': 'Y'
-        , 'inc_pseudo_rand': 'N'}
-
+    # Define a configuration dict to hold all key information
     global config
     config = {'dataset_source': 'openml'
         , 'dataset': 38
         , 'algorithm': 'rf'
         , 'search_strategy': 'smbox'
-        , 'search_strategy_config': search_strategy_config_
+        , 'search_strategy_config': smbox_params
         , 'wallclock': 600
         , 'output_root': '/Users/salhit/development/smbox/smbox/test/resources/output/'
               }
     logger.log(f'Experiment Config: {config}', 'DEBUG')
-
-    _random_seed = 42
-
     ##----
 
-    # Code to execute if script is run directly
+    _random_seed = 42
     #df, target_name = fetch_open_ml_data(dataset_id=config['dataset'])
     df = pd.read_csv('test/resources/dataset_38.csv')
     target_name = 'target'
     data_all = prepare_data(df, target_name, _random_seed, test_size=0.3)
 
     if config['algorithm'] == 'xgb':
-        cfg_schema = ParamSpace.create_cfg_schema('test/resources/xgb_schema.json')
+        from ParamSpace import xgb_default_param_space
+        # use default hperparameter search space
+        cfg_schema = xgb_default_param_space
 
+        # use default bespoke hperparameter search space
+        # cfg_schema = ParamSpace.create_cfg_schema('test/resources/xgb_schema.json')
+
+        # update the default scale_pos_weight param
         classes = data_all['y_train'].value_counts()
         class_0 = min(classes.index.values)
         class_1 = max(classes.index.values)
@@ -110,9 +108,15 @@ if __name__ == "__main__":
         cfg_schema['fix']['scale_pos_weight'] = balance_ratio
         logger.log(f"Updated scale_pos_weight in cfg space --> {balance_ratio}", 'DEBUG')
 
-        cfg_schema = ParamSpace.create_cfg_schema('test/resources/xgb_schema.json')
     elif config['algorithm'] == 'rf':
-        cfg_schema = ParamSpace.create_cfg_schema('test/resources/rf_schema.json')
+        from ParamSpace import rf_default_param_space
+
+        # use default hperparameter search space
+        cfg_schema = rf_default_param_space
+
+        # use default bespoke hperparameter search space
+        #cfg_schema = ParamSpace.create_cfg_schema('test/resources/rf_schema.json')
+
 
     logger.log(f'-------------Starting SMBOX')
     logger.log(f'Initial configuration schema: {cfg_schema}', 'DEBUG')

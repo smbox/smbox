@@ -14,6 +14,13 @@ from ParamSpace import ParamSpace
 
 logger = Logger()
 
+search_strategy_config_ = {'lf_init_ratio': 0.3
+        , 'lf_init_n': 35
+        , 'lf_ratio': 1.00
+        , 'alpha_n': 2
+        , 'inc_rand': 'Y'
+        , 'inc_pseudo_rand': 'N'}
+
 class Optimise:
 
     def __init__(self, config, random_seed):
@@ -252,21 +259,21 @@ class Optimise:
         # Save trial data if provided
         if not _df_trials.empty:
             output_path = f"{self.output_root}trials_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.csv"
-            _df_trials.to_csv(self.output_path, index=False)
-            logger.log(f'Trial output saved to: {self.output_path}')
+            _df_trials.to_csv(output_path, index=False)
+            logger.log(f'Trial output saved to: {output_path}')
 
         # Save holdout test set result data if provided
         if not _df_holdout.empty:
             output_path = f"{self.output_root}_run_log_holdout_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.csv"
-            _df_holdout.to_csv(self.output_path, index=False)
-            logger.log(f'Output saved to: {self.output_path}')
+            _df_holdout.to_csv(output_path, index=False)
+            logger.log(f'Output saved to: {output_path}')
 
         # Save wall clock data if provided
         if wallclock_dict is not None:
             output_path = f"{self.output_root}wallclock_{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{timestamp}.json"
-            with open(self.output_path, 'w') as fp:
+            with open(output_path, 'w') as fp:
                 json.dump(wallclock_dict, fp)
-                logger.log(f'Wall clock data saved to: {self.output_path}')
+                logger.log(f'Wall clock data saved to: {output_path}')
 
 
     def fit_response_surface_model(self, cfg_schema, population_fitness_history, params):
