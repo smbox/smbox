@@ -490,6 +490,6 @@ class Optimise:
         df_trials = optimiser.format_trials_output(cfg_schema, population_fitness_history)
         #df_holdout = Optimise.format_best_trial_output(test_perf, best_params)
         #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
-        optimiser.save_output(self.output_root, _df_trials=df_trials)
+        optimiser.save_output(_df_trials=df_trials)
 
         logger.log('RUN COMPLETE')
