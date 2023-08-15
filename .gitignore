@@ -1,6 +1,13 @@
+# Python compiled files
 __pycache__/
+
+# macOS system files
 .DS_Store
-smbox/.DS_Store
-smbox/catboost_info/
-examples/.ipynb_checkpoints
-examples/catboost_info*
+**/.DS_Store
+
+# catboost info directories
+**/catboost_info/
+
+# Jupyter notebook checkpoints
+examples/.ipynb_checkpoints/
+
