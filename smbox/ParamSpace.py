@@ -2,7 +2,7 @@ import json
 import pandas as pd
 from typing import Dict, Any
 import hashlib
-from Utils import Logger
+from smbox.Utils import Logger
 
 logger = Logger()  # Singleton
 

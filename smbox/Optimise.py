@@ -9,8 +9,8 @@ from datetime import datetime
 from catboost import CatBoostRegressor
 from sklearn.model_selection import train_test_split
 
-from Utils import Logger
-from ParamSpace import ParamSpace
+from smbox.Utils import Logger
+from smbox.ParamSpace import ParamSpace
 
 logger = Logger()
 
@@ -364,7 +364,7 @@ class Optimise:
         return new_cfgs
 
 
-    def SMBOXOptimise(self, data_all, cfg_schema):
+    def SMBOXOptimise(self, data_all, cfg_schema, save_trials=True):
         """
         This function performs the SMBOX search routine experiment. SMBOX is a strategy to
         optimize hyperparameters of machine learning models using sequential model-based
@@ -493,10 +493,12 @@ class Optimise:
         #test_perf = calculate_test_set_performance(data, best_params)
         #log(f'Test set performance: {test_perf}')
 
-        # save output
-        df_trials = optimiser.format_trials_output(cfg_schema, population_fitness_history)
-        #df_holdout = Optimise.format_best_trial_output(test_perf, best_params)
-        #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
-        optimiser.save_output(_df_trials=df_trials)
+        if save_trials:
+            df_trials = optimiser.format_trials_output(cfg_schema, population_fitness_history)
+            #df_holdout = Optimise.format_best_trial_output(test_perf, best_params)
+            #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
+            optimiser.save_output(_df_trials=df_trials)
 
         logger.log('RUN COMPLETE')
+
+        return best_params

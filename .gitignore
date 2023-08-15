@@ -2,3 +2,5 @@ __pycache__/
 .DS_Store
 smbox/.DS_Store
 smbox/catboost_info/
+examples/.ipynb_checkpoints
+examples/catboost_info*
