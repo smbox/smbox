@@ -1,6 +1,6 @@
 # smbox
 
-`smbox`: Sequential Model-Based Optimization eXpress is a lightweight Python library for Hyperparmeter Optomisimation.
+`smbox`:**Sequential Model-Based Optimization eXpress** is a lightweight Python library for Hyperparmeter Optomisimation.
 
 ## Table of Contents
 
@@ -9,6 +9,7 @@
 - [License](#License)
 - [Contact](#Contact)
 - [Usage Example](#Usage Example)
+- [Cite](#Cite)
 
 ## 📖 Introduction
 `smbox` provides a cutting-edge implementation of Sequential Model-Based Optimization (SMBO), tailored for tuning ML algorithm parameters. At its core, SMBO is designed to optimally explore expensive and noisy black-box functions, making it particularly suitable for hyperparameter optimization. With smbox, users can achieve peak performance in their ML models, bypassing the need for exhaustive and time-consuming search methods.
@@ -95,3 +96,5 @@ logger.log(f'-------------Starting SMBOX')
 optimiser = Optimise(config, random_seed=42)
 best_parameters = optimiser.SMBOXOptimise(data, cfg_schema)
 ```
+## Cite
+BibTex
