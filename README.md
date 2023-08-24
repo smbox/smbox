@@ -1,10 +1,20 @@
 # smbox
 
+`smbox`: Sequential Model-Based Optimization eXpress is a lightweight Python library for Hyperparmeter Optomisimation.
+
+## Table of Contents
+
+- [Introduction](#Introduction)
+- [Installation](#Installation)
+- [License](#License)
+- [Contact](#Contact)
+- [Usage Example](#Usage Example)
+
 ## 📖 Introduction
+`smbox` provides a cutting-edge implementation of Sequential Model-Based Optimization (SMBO), tailored for tuning ML algorithm parameters. At its core, SMBO is designed to optimally explore expensive and noisy black-box functions, making it particularly suitable for hyperparameter optimization. With smbox, users can achieve peak performance in their ML models, bypassing the need for exhaustive and time-consuming search methods.
 
-Sequential Model-Based Optimization eXpress `smbox` is a powerful library for Sequential Model-Based Optimization (SMBO), which is a process for finding the optimal value of an expensive and noisy black-box function. With `smbox`, you can efficiently optimize the hyperparameters of any ML algorithm to get the best performance without an exhaustive search.
-
-- 🚂 **State-of-the-art HPO**: Achieve state-of-the-art hyperparameter optimization (HPO) performance with minimal effort.
+### Features:
+- 🚂 **State-of-the-art HPO**: Achieve state-of-the-art hyperparameter optimization performance with minimal effort.
 
 
 - 🎯 **Default Parameter Space**: Use our default parameter search space to simply plug and play with the most common ML algorithms.
@@ -17,9 +27,22 @@ Making it simpler than defining grid search ranges or complicated parameter sear
 - 🤖️ **Bring your own Objective Function**: Tune any ML algorithm using the performance metric to suit your needs with. (Coming soon)
 
 ## 🛠 Installation
+For Users (Non-Developers):
+If you just want to use smbox, you can install it directly from the repository:
 ```
-git clone https://github.com/Tarek0/smbox.git
+pip install git+https://github.com/Tarek0/smbox.git
 ```
+For Developers:
+If you're a developer and intend to contribute or make changes to smbox, you'll want to clone the repository and install in "editable" mode. This ensures that changes you make are immediately reflected in the version of smbox that's used in your Python environment.
+
+1. Clone the repository:
+```git clone https://github.com/Tarek0/smbox.git```
+2. Navigate to the cloned directory:
+```cd smbox```
+3. Install in editable mode:
+```pip install -e . ```
+
+
 ## 📄 License
 smbox is released under the MIT License. See the LICENSE file for more details.
 

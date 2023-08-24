@@ -9,8 +9,8 @@ from datetime import datetime
 from catboost import CatBoostRegressor
 from sklearn.model_selection import train_test_split
 
-from smbox.Utils import Logger
-from smbox.ParamSpace import ParamSpace
+from smbox.utils import Logger
+from smbox.paramspace import ParamSpace
 
 logger = Logger()
 

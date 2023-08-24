@@ -14,20 +14,6 @@ def fetch_open_ml_data(dataset_id):
 
     return df, 'target'
 
-# def source_pmlb_benchmark_data(dataset, cache_loc='None'):
-#    """Source benchmarking dataset
-#    :param dataset. name of the dataset
-#    :param cache_loc. location to cache datasets previously loaded"""
-#    print('Fetching the', dataset, 'benchmark data...')
-#    try:
-#        df = fetch_data(dataset, local_cache_dir=cache_loc)
-#    except:
-#        df = fetch_data(dataset)
-#
-#    target_name = 'target'
-#    print(f'Data loaded: {df.shape}')
-#    return df, target_name
-
 def prepare_data(df: pd.DataFrame, target_name: str, random_seed: int = 42, test_size: float = 0.3):
     """
     Prepares the data for machine learning by splitting it into train and test sets, and handling missing values.
@@ -60,14 +46,11 @@ def prepare_data(df: pd.DataFrame, target_name: str, random_seed: int = 42, test
 
 if __name__ == "__main__":
 
-    import sys
-    #sys.path.insert(0, "./smbox")
-    sys.path.insert(0, "..")
-
-    from Utils import Logger
-    from ParamSpace import ParamSpace
-    from Optimise import Optimise
-    from smbox_config import smbox_params
+    from smbox.utils import Logger
+    from smbox.paramspace import ParamSpace
+    from smbox.paramspace import rf_default_param_space, xgb_default_param_space
+    from smbox.optimise import Optimise
+    from smbox.smbox_config import smbox_params
 
     logger = Logger()
 
@@ -87,15 +70,13 @@ if __name__ == "__main__":
 
     _random_seed = 42
     #df, target_name = fetch_open_ml_data(dataset_id=config['dataset'])
-    df = pd.read_csv('test/resources/dataset_38.csv')
+    df = pd.read_csv('smbox/test/resources/dataset_38.csv')
     target_name = 'target'
     data_all = prepare_data(df, target_name, _random_seed, test_size=0.3)
 
     if config['algorithm'] == 'xgb':
-        from ParamSpace import xgb_default_param_space
         # use default hperparameter search space
         cfg_schema = xgb_default_param_space
-
         # use default bespoke hperparameter search space
         # cfg_schema = ParamSpace.create_cfg_schema('test/resources/xgb_schema.json')
 
@@ -109,14 +90,10 @@ if __name__ == "__main__":
         logger.log(f"Updated scale_pos_weight in cfg space --> {balance_ratio}", 'DEBUG')
 
     elif config['algorithm'] == 'rf':
-        from ParamSpace import rf_default_param_space
-
         # use default hperparameter search space
         cfg_schema = rf_default_param_space
-
         # use default bespoke hperparameter search space
         #cfg_schema = ParamSpace.create_cfg_schema('test/resources/rf_schema.json')
-
 
     logger.log(f'-------------Starting SMBOX')
     logger.log(f'Initial configuration schema: {cfg_schema}', 'DEBUG')
