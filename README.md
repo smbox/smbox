@@ -48,7 +48,7 @@ If you're a developer and intend to contribute or make changes to smbox, you'll 
 smbox is released under the MIT License. See the LICENSE file for more details.
 
 ## 📮 Contact
-For questions or feedback, please contact tareksalhi0@gmail.com
+For questions or feedback, please join our [Slack channel.](https://join.slack.com/t/slack-4aw5037/shared_invite/zt-22maoikro-_v_cxHvh7L_nMo7oqPvIvg)
 
 ## 🚀 Usage Example
 ```

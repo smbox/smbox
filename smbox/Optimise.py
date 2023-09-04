@@ -484,8 +484,7 @@ class Optimise:
                 logger.log(f'improvement: {max(challenger - global_best, 0)}')
                 global_best = challenger
                 logger.log(f'Global best so far: {global_best}')
-            """
-            """
+
         logger.log(f'Global best: {global_best}')
         best_params_df = population_fitness_history[population_fitness_history.value == global_best].head(1)
         best_params = best_params_df.drop(['value', 'number', 'gen', 'time_elapsed'], axis=1).iloc[0].to_dict()
@@ -495,7 +494,7 @@ class Optimise:
 
         if save_trials:
             df_trials = optimiser.format_trials_output(cfg_schema, population_fitness_history)
-            #df_holdout = Optimise.format_best_trial_output(test_perf, best_params)
+            #df_holdout = optimiser.format_best_trial_output(test_perf, best_params)
             #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
             optimiser.save_output(_df_trials=df_trials)
 
