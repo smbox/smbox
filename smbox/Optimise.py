@@ -23,12 +23,24 @@ search_strategy_config_ = {'lf_init_ratio': 0.3
 
 class Optimise:
 
-    def __init__(self, config, random_seed):
+    def __init__(self, config, random_seed, mlflow_tracking=False):
 
         self.config = config
         self.output_root = config['output_root']
         self.random_seed = random_seed
+        self.mlflow_tracking = mlflow_tracking
 
+        if mlflow_tracking:
+            import mlflow
+
+            timestamp = datetime.now().strftime("%Y_%m_%d_%H%M%S")
+            # Create a new experiment
+            experiment_name = f"smbox_{timestamp}"
+            mlflow.create_experiment(experiment_name)
+
+            # Get the experiment ID for the new experiment
+            experiment = mlflow.get_experiment_by_name(experiment_name)
+            self.experiment_id = experiment.experiment_id
 
     def create_population(self, cfg_schema, population_size):
         """
@@ -141,11 +153,20 @@ class Optimise:
             cfg = population[i]  # Parameters to be evaluated
             optimiser = Optimise(self.config, self.random_seed)
             perf = optimiser.objective(cfg, data)
-            #perf = Optimise.objective(cfg, data)
+
+            if self.mlflow_tracking:
+                import mlflow
+                with mlflow.start_run(experiment_id=self.experiment_id):
+                    logger.log((cfg, perf), 'DEBUG')
+                    mlflow.log_params(cfg)
+                    mlflow.log_metric("perf", perf)
+                    mlflow.log_metric("time", time.time())
+                    mlflow.end_run()
+                logger.log(f'mlflow experiment created: {self.experiment_id}', 'DEBUG')
 
             _row = list(population[i].values()) + [perf, i + trial_counter, time.time() - t_start]
             df.loc[i] = _row
-            logger.log((cfg, perf), 'DEBUG')
+
 
         return df, time_status
 
@@ -387,7 +408,6 @@ class Optimise:
 
         The function ends by saving output and indicating completion of the run.
         """
-        optimiser = Optimise(self.config, self.random_seed)
 
         wallclock_seconds = self.config['wallclock']
         logger.log(f"Starting run for: {self.config['dataset']}, for {wallclock_seconds} seconds")
@@ -409,16 +429,16 @@ class Optimise:
         if search_strategy_config_['lf_init_ratio'] == 1.0:
             data_low_fidelity = data_all.copy()
         else:
-            data_low_fidelity = optimiser.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_init_ratio'],)
-        population_candidates = optimiser.create_population(cfg_schema, search_strategy_config_['lf_init_n'])
+            data_low_fidelity = self.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_init_ratio'],)
+        population_candidates = self.create_population(cfg_schema, search_strategy_config_['lf_init_n'])
         population = ParamSpace.feasiable_check(cfg_schema, population_candidates)
-        population_fitness, time_status = optimiser.evaluate_population(population, data_low_fidelity)
+        population_fitness, time_status = self.evaluate_population(population, data_low_fidelity)
         logger.log('Completed initialization', 'DEBUG')
         if search_strategy_config_['lf_ratio'] == 1.00:
             data = data_all
         else:
             logger.log('Sampling to generate low fidelity training dataset', 'DEBUG')
-            data = optimiser.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_ratio'])
+            data = self.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_ratio'])
 
         # Create history table
         population_fitness_history = population_fitness.copy()
@@ -435,9 +455,9 @@ class Optimise:
         while time_status == 'OK':
             gen += 1
             # Fitting response model
-            regressor = optimiser.fit_response_surface_model(cfg_schema, population_fitness_history, params)
+            regressor = self.fit_response_surface_model(cfg_schema, population_fitness_history, params)
             # Identify best population candidates
-            population_candidates = optimiser.create_population(cfg_schema, 50000)
+            population_candidates = self.create_population(cfg_schema, 50000)
             population_candidates = ParamSpace.feasiable_check(cfg_schema, population_candidates)
             df_population_candidates = pd.DataFrame(population_candidates)
             # Check against cache to remove any already calculated params configurations
@@ -473,7 +493,7 @@ class Optimise:
                 population = population + pseudo_rand_population
 
             # Evaluate the best
-            population_fitness, time_status = optimiser.evaluate_population(population, data,
+            population_fitness, time_status = self.evaluate_population(population, data,
                                                                   trial_counter=len(population_fitness_history))
             population_fitness["gen"] = gen
 
@@ -493,10 +513,10 @@ class Optimise:
         #log(f'Test set performance: {test_perf}')
 
         if save_trials:
-            df_trials = optimiser.format_trials_output(cfg_schema, population_fitness_history)
+            df_trials = self.format_trials_output(cfg_schema, population_fitness_history)
             #df_holdout = optimiser.format_best_trial_output(test_perf, best_params)
             #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
-            optimiser.save_output(_df_trials=df_trials)
+            self.save_output(_df_trials=df_trials)
 
         logger.log('RUN COMPLETE')
 

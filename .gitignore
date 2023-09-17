@@ -11,3 +11,5 @@ __pycache__/
 # Jupyter notebook checkpoints
 examples/.ipynb_checkpoints/
 
+# mlflow runs
+mlflow/*
