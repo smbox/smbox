@@ -8,7 +8,7 @@
 - [Installation](#Installation)
 - [License](#License)
 - [Contact](#Contact)
-- [Example](#Usage Example)
+- [Example](#Example)
 - [Cite](#Cite)
 
 ## 📖 Introduction
