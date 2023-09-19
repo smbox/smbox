@@ -8,7 +8,7 @@
 - [Installation](#Installation)
 - [License](#License)
 - [Contact](#Contact)
-- [Usage Example](#Usage Example)
+- [Example](#Usage Example)
 - [Cite](#Cite)
 
 ## 📖 Introduction
@@ -50,7 +50,7 @@ smbox is released under the MIT License. See the LICENSE file for more details.
 ## 📮 Contact
 For questions or feedback, please join our [Slack channel.](https://join.slack.com/t/slack-4aw5037/shared_invite/zt-22maoikro-_v_cxHvh7L_nMo7oqPvIvg)
 
-## 🚀 Usage Example
+## 🚀 Example
 ```
 import pandas as pd
 import openml
@@ -98,3 +98,4 @@ best_parameters = optimiser.SMBOXOptimise(data, cfg_schema)
 ```
 ## Cite
 BibTex
+TBC

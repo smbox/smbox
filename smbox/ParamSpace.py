@@ -174,7 +174,7 @@ rf_default_param_space = {
       },
       "max_depth":{
          "min":2,
-         "max":100,
+         "max":200,
          "mu":20,
          "sigma":5,
          "sample_dist":"log_normal",
