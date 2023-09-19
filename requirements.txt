@@ -1,11 +1,74 @@
-brotli==1.0.9
-catboost==1.2
-configparser==5.3.0
-future==0.18.3
-munkres==1.1.4
-openml==0.12.2
-pooch==1.7.0
-pysocks==1.7.1
-typing-extensions==4.7.1
-xgboost==1.7.6
+alembic==1.12.0
+blinker==1.6.2
+Brotli @ file:///Users/runner/miniforge3/conda-bld/brotli-split_1687884187023/work
+catboost @ https://pypi.org/packages/cp311/c/catboost/catboost-1.2-cp311-cp311-macosx_11_0_universal2.whl#sha256=983c7ec6654baddf19c574a72cfa53e926e89e5ab48941b3bc94c06edca38a49
+certifi==2023.7.22
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1688813409104/work
+click==8.1.7
+cloudpickle==2.2.1
+configparser @ file:///home/conda/feedstock_root/build_artifacts/configparser_1660952164778/work
+contourpy @ file:///Users/runner/miniforge3/conda-bld/contourpy_1686733886590/work
+cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1635519461629/work
+databricks-cli==0.17.7
+docker==6.1.3
+entrypoints==0.4
+Flask==2.3.3
+fonttools @ file:///Users/runner/miniforge3/conda-bld/fonttools_1691006802286/work
+future @ file:///home/conda/feedstock_root/build_artifacts/future_1673596611778/work
+gitdb==4.0.10
+GitPython==3.1.36
+graphviz @ file:///home/conda/feedstock_root/build_artifacts/python-graphviz_1658658635601/work
+greenlet==2.0.2
+gunicorn==21.2.0
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
+importlib-metadata==6.8.0
+itsdangerous==2.1.2
+Jinja2==3.1.2
+joblib @ file:///home/conda/feedstock_root/build_artifacts/joblib_1688155275339/work
+kiwisolver @ file:///Users/runner/miniforge3/conda-bld/kiwisolver_1666805734106/work
+liac-arff @ file:///home/conda/feedstock_root/build_artifacts/liac-arff_1612178018045/work
+Mako==1.2.4
+Markdown==3.4.4
+MarkupSafe==2.1.3
+matplotlib @ file:///Users/runner/miniforge3/conda-bld/matplotlib-suite_1688684902813/work
+minio @ file:///home/conda/feedstock_root/build_artifacts/minio_1684611766198/work
 mlflow==2.7.1
+munkres==1.1.4
+numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1691056331440/work
+oauthlib==3.2.2
+openml @ file:///home/conda/feedstock_root/build_artifacts/openml_1625482341640/work
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1681337016113/work
+pandas @ file:///Users/runner/miniforge3/conda-bld/pandas_1688740728270/work
+Pillow @ file:///Users/runner/miniforge3/conda-bld/pillow_1688256017077/work
+pip-chill==1.0.3
+platformdirs @ file:///home/conda/feedstock_root/build_artifacts/platformdirs_1690813113769/work
+plotly @ file:///home/conda/feedstock_root/build_artifacts/plotly_1686267560832/work
+pooch @ file:///home/conda/feedstock_root/build_artifacts/pooch_1679580333621/work
+protobuf==4.24.3
+pyarrow==12.0.1
+PyJWT==2.8.0
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1652235407899/work
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1661604839144/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1680088766131/work
+PyYAML==6.0.1
+querystring-parser==1.2.4
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1684774241324/work
+scikit-learn @ file:///Users/runner/miniforge3/conda-bld/scikit-learn_1688116528758/work
+scipy @ file:///Users/runner/miniforge3/conda-bld/scipy-split_1687995672847/work/base/dist/scipy-1.11.1-cp311-cp311-macosx_10_9_x86_64.whl#sha256=a98d68c1d8dad3fc78082be77629b2b097ae2d7c9b0626aef8b66cf2e0bae081
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+-e git+https://github.com/Tarek0/smbox@75875bce7f4a7ca3537c5b4634c6bbc586363cec#egg=smbox
+smmap==5.0.1
+SQLAlchemy==2.0.20
+sqlparse==0.4.4
+tabulate==0.9.0
+tenacity @ file:///home/conda/feedstock_root/build_artifacts/tenacity_1677600641219/work
+threadpoolctl @ file:///home/conda/feedstock_root/build_artifacts/threadpoolctl_1689261241048/work
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1688315532570/work
+tzdata @ file:///home/conda/feedstock_root/build_artifacts/python-tzdata_1680081134351/work
+urllib3==1.26.16
+websocket-client==1.6.3
+Werkzeug==2.3.7
+xgboost==1.7.6
+xmltodict @ file:///home/conda/feedstock_root/build_artifacts/xmltodict_1652020822199/work
+zipp==3.16.2
