@@ -8,3 +8,4 @@ pooch==1.7.0
 pysocks==1.7.1
 typing-extensions==4.7.1
 xgboost==1.7.6
+mlflow==2.7.1
