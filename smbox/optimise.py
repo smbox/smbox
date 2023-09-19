@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from smbox.utils import Logger
 from smbox.paramspace import ParamSpace
 
-logger = Logger()
+logger = None
 
 search_strategy_config_ = {'lf_init_ratio': 0.3
         , 'lf_init_n': 35
@@ -24,6 +24,9 @@ search_strategy_config_ = {'lf_init_ratio': 0.3
 class Optimise:
 
     def __init__(self, config, random_seed, mlflow_tracking=False):
+        global logger
+        if logger is None:
+            logger = Logger()
 
         self.config = config
         self.output_root = config['output_root']
@@ -311,6 +314,7 @@ class Optimise:
         """
         X = population_fitness_history[params]
         y = population_fitness_history['value']
+        logger.log(X.describe(), 'DEBUG')
 
         cat_features = []
         for k in list(cfg_schema['tune'].keys()):
@@ -408,116 +412,121 @@ class Optimise:
 
         The function ends by saving output and indicating completion of the run.
         """
+        try:
+            wallclock_seconds = self.config['wallclock']
+            logger.log(f"Starting run for: {self.config['dataset']}, for {wallclock_seconds} seconds")
+            search_strategy_config_ = self.config['search_strategy_config']
 
-        wallclock_seconds = self.config['wallclock']
-        logger.log(f"Starting run for: {self.config['dataset']}, for {wallclock_seconds} seconds")
-        search_strategy_config_ = self.config['search_strategy_config']
+            params = list(cfg_schema['tune'].keys())
+            fixed_params = list(cfg_schema['fix'].keys())
+            all_params = params + fixed_params  # get a list of all cfg params
+            logger.log(f' Tuning parameters: {params}', 'DEBUG')
 
-        params = list(cfg_schema['tune'].keys())
-        fixed_params = list(cfg_schema['fix'].keys())
-        all_params = params + fixed_params  # get a list of all cfg params
-        logger.log(f' Tuning parameters: {params}', 'DEBUG')
+            global t_end
+            global t_start
+            t_start = time.time()
+            t_end = t_start + wallclock_seconds  # set end time
+            self.config['run_key'] = f"{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{t_start}"
 
-        global t_end
-        global t_start
-        t_start = time.time()
-        t_end = t_start + wallclock_seconds  # set end time
-        self.config['run_key'] = f"{self.config['search_strategy']}_{self.config['dataset']}_{self.config['algorithm']}_{t_start}"
-
-        # Initialization
-        logger.log('Initialization - Random search to train a response surface model', 'DEBUG')
-        if search_strategy_config_['lf_init_ratio'] == 1.0:
-            data_low_fidelity = data_all.copy()
-        else:
-            data_low_fidelity = self.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_init_ratio'],)
-        population_candidates = self.create_population(cfg_schema, search_strategy_config_['lf_init_n'])
-        population = ParamSpace.feasiable_check(cfg_schema, population_candidates)
-        population_fitness, time_status = self.evaluate_population(population, data_low_fidelity)
-        logger.log('Completed initialization', 'DEBUG')
-        if search_strategy_config_['lf_ratio'] == 1.00:
-            data = data_all
-        else:
-            logger.log('Sampling to generate low fidelity training dataset', 'DEBUG')
-            data = self.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_ratio'])
-
-        # Create history table
-        population_fitness_history = population_fitness.copy()
-        population_fitness_history["gen"] = 0
-        global_best = population_fitness.value.max()
-        logger.log(f'Global best so far: {global_best}')
-
-        # Update hp configuration schema
-        cfg_schema = ParamSpace.update_config_schema(cfg_schema, population_fitness_history)
-        logger.log('Updated cfg_schema', 'DEBUG')
-        logger.log(cfg_schema, 'DEBUG')
-
-        gen = 0
-        while time_status == 'OK':
-            gen += 1
-            # Fitting response model
-            regressor = self.fit_response_surface_model(cfg_schema, population_fitness_history, params)
-            # Identify best population candidates
-            population_candidates = self.create_population(cfg_schema, 50000)
-            population_candidates = ParamSpace.feasiable_check(cfg_schema, population_candidates)
-            df_population_candidates = pd.DataFrame(population_candidates)
-            # Check against cache to remove any already calculated params configurations
-            temp_cache = pd.concat([df_population_candidates, population_fitness_history[all_params]], axis=0)
-
-            df_population_candidates = temp_cache[~temp_cache.duplicated(subset=all_params, keep=False)].copy()
-            # Predict fitness of each param cfg
-            df_population_candidates['value'] = regressor.predict(df_population_candidates[params])
-            df_population_candidates.sort_values('value', inplace=True, ascending=False)
-
-            # Inject random param cfgs (meta parameter)
-            if search_strategy_config_['inc_rand'] == 'Y':
-                logger.log('Including random cfgs', 'DEBUG')
-                rand = random.randint(search_strategy_config_['alpha_n'], len(df_population_candidates) - 1)
-                df_best_candidates = pd.concat([
-                    df_population_candidates.head(search_strategy_config_['alpha_n']),
-                    df_population_candidates.iloc[[rand]]
-                ])
+            # Initialization
+            logger.log('Initialization - Random search to train a response surface model', 'DEBUG')
+            if search_strategy_config_['lf_init_ratio'] == 1.0:
+                data_low_fidelity = data_all.copy()
             else:
-                df_best_candidates = df_population_candidates.head(search_strategy_config_['alpha_n'])
-            df_best_candidates = df_best_candidates.loc[:, df_population_candidates.columns != 'value']
-            df_best_candidates['param'] = df_best_candidates.to_dict(orient='records')
-            population = list(df_best_candidates['param'])
+                data_low_fidelity = self.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_init_ratio'],)
+            population_candidates = self.create_population(cfg_schema, search_strategy_config_['lf_init_n'])
+            population = ParamSpace.feasiable_check(cfg_schema, population_candidates)
+            if not population:
+                raise IndexError("The population list is empty!")
+            population_fitness, time_status = self.evaluate_population(population, data_low_fidelity)
+            logger.log('Completed initialization', 'DEBUG')
+            if search_strategy_config_['lf_ratio'] == 1.00:
+                data = data_all
+            else:
+                logger.log('Sampling to generate low fidelity training dataset', 'DEBUG')
+                data = self.create_lowfidelity_dataset(data_all, search_strategy_config_['lf_ratio'])
 
-            # Inject inc_pseudo random param cfgs (meta parameter)
-            if search_strategy_config_['inc_pseudo_rand'] == 'Y':
-                logger.log('Generating pseudo random cfgs', 'DEBUG')
-                anchor_cfgs = population_fitness_history[params].head(2)
-                df_pseudo_rand_population_candidates = Optimise.anchor_new_cfgs(cfg_schema, anchor_cfgs, generate_n=1,
-                                                                      expore_alpha=0.25)
-                df_pseudo_rand_population_candidates['param'] = df_pseudo_rand_population_candidates.to_dict(orient='records')
-                pseudo_rand_population = list(df_pseudo_rand_population_candidates['param'])
-                population = population + pseudo_rand_population
+            # Create history table
+            population_fitness_history = population_fitness.copy()
+            population_fitness_history["gen"] = 0
+            global_best = population_fitness.value.max()
+            logger.log(f'Global best so far: {global_best}')
 
-            # Evaluate the best
-            population_fitness, time_status = self.evaluate_population(population, data,
-                                                                  trial_counter=len(population_fitness_history))
-            population_fitness["gen"] = gen
+            # Update hp configuration schema
+            cfg_schema = ParamSpace.update_config_schema(cfg_schema, population_fitness_history)
+            logger.log('Updated cfg_schema', 'DEBUG')
+            logger.log(cfg_schema, 'DEBUG')
 
-            # Update history and global best
-            population_fitness_history = pd.concat([population_fitness_history, population_fitness], ignore_index=True)
-            challenger = population_fitness.value.max()
-            if challenger > global_best:
-                logger.log(f'improvement: {max(challenger - global_best, 0)}')
-                global_best = challenger
-                logger.log(f'Global best so far: {global_best}')
+            gen = 0
+            while time_status == 'OK':
+                gen += 1
+                # Fitting response model
+                regressor = self.fit_response_surface_model(cfg_schema, population_fitness_history, params)
+                # Identify best population candidates
+                population_candidates = self.create_population(cfg_schema, 50000)
+                population_candidates = ParamSpace.feasiable_check(cfg_schema, population_candidates)
+                df_population_candidates = pd.DataFrame(population_candidates)
+                # Check against cache to remove any already calculated params configurations
+                temp_cache = pd.concat([df_population_candidates, population_fitness_history[all_params]], axis=0)
 
-        logger.log(f'Global best: {global_best}')
-        best_params_df = population_fitness_history[population_fitness_history.value == global_best].head(1)
-        best_params = best_params_df.drop(['value', 'number', 'gen', 'time_elapsed'], axis=1).iloc[0].to_dict()
-        logger.log(f'Best params: {best_params}')
-        #test_perf = calculate_test_set_performance(data, best_params)
-        #log(f'Test set performance: {test_perf}')
+                df_population_candidates = temp_cache[~temp_cache.duplicated(subset=all_params, keep=False)].copy()
+                # Predict fitness of each param cfg
+                df_population_candidates['value'] = regressor.predict(df_population_candidates[params])
+                df_population_candidates.sort_values('value', inplace=True, ascending=False)
 
-        if save_trials:
-            df_trials = self.format_trials_output(cfg_schema, population_fitness_history)
-            #df_holdout = optimiser.format_best_trial_output(test_perf, best_params)
-            #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
-            self.save_output(_df_trials=df_trials)
+                # Inject random param cfgs (meta parameter)
+                if search_strategy_config_['inc_rand'] == 'Y':
+                    logger.log('Including random cfgs', 'DEBUG')
+                    rand = random.randint(search_strategy_config_['alpha_n'], len(df_population_candidates) - 1)
+                    df_best_candidates = pd.concat([
+                        df_population_candidates.head(search_strategy_config_['alpha_n']),
+                        df_population_candidates.iloc[[rand]]
+                    ])
+                else:
+                    df_best_candidates = df_population_candidates.head(search_strategy_config_['alpha_n'])
+                df_best_candidates = df_best_candidates.loc[:, df_population_candidates.columns != 'value']
+                df_best_candidates['param'] = df_best_candidates.to_dict(orient='records')
+                population = list(df_best_candidates['param'])
 
-        logger.log('RUN COMPLETE')
+                # Inject inc_pseudo random param cfgs (meta parameter)
+                if search_strategy_config_['inc_pseudo_rand'] == 'Y':
+                    logger.log('Generating pseudo random cfgs', 'DEBUG')
+                    anchor_cfgs = population_fitness_history[params].head(2)
+                    df_pseudo_rand_population_candidates = Optimise.anchor_new_cfgs(cfg_schema, anchor_cfgs, generate_n=1,
+                                                                          expore_alpha=0.25)
+                    df_pseudo_rand_population_candidates['param'] = df_pseudo_rand_population_candidates.to_dict(orient='records')
+                    pseudo_rand_population = list(df_pseudo_rand_population_candidates['param'])
+                    population = population + pseudo_rand_population
 
-        return best_params
+                # Evaluate the best
+                population_fitness, time_status = self.evaluate_population(population, data,
+                                                                      trial_counter=len(population_fitness_history))
+                population_fitness["gen"] = gen
+
+                # Update history and global best
+                population_fitness_history = pd.concat([population_fitness_history, population_fitness], ignore_index=True)
+                challenger = population_fitness.value.max()
+                if challenger > global_best:
+                    logger.log(f'improvement: {max(challenger - global_best, 0)}')
+                    global_best = challenger
+                    logger.log(f'Global best so far: {global_best}')
+
+            logger.log(f'Global best: {global_best}')
+            best_params_df = population_fitness_history[population_fitness_history.value == global_best].head(1)
+            best_params = best_params_df.drop(['value', 'number', 'gen', 'time_elapsed'], axis=1).iloc[0].to_dict()
+            logger.log(f'Best params: {best_params}')
+            #test_perf = calculate_test_set_performance(data, best_params)
+            #log(f'Test set performance: {test_perf}')
+
+            if save_trials:
+                df_trials = self.format_trials_output(cfg_schema, population_fitness_history)
+                #df_holdout = optimiser.format_best_trial_output(test_perf, best_params)
+                #optimiser.save_output(self.output_root, _df_trials=df_trials, _df_holdout=df_holdout)
+                self.save_output(_df_trials=df_trials)
+
+            logger.log('RUN COMPLETE')
+
+            return best_params, global_best
+
+        except IndexError as e:
+            logger.log(f"Error encountered: {e}")
