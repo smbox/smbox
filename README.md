@@ -56,23 +56,24 @@ import pandas as pd
 import openml
 
 from smbox.utils import Logger
+from smbox.optimise import Optimise
 from smbox.smbox_config import smbox_params
 from smbox.paramspace import rf_default_param_space
-from smbox.optimise import Optimise
 
 logger = Logger()
 
 # Fetch a classification dataset from OpenML
 dataset = openml.datasets.get_dataset(38)
+target_name ='target'
 
 X, y, categorical_indicator, attribute_names = dataset.get_data(
     dataset_format="array", target=dataset.default_target_attribute
 )
 df = pd.DataFrame(X, columns=attribute_names)
-df["target"] = y
+df[target_name] = y
 
 # Basic data preprocesing 
-y = df['target']
+y = df[target_name]
 X = df.drop(target_name, axis=1)
 X.fillna(0, inplace=True)
 
@@ -87,7 +88,7 @@ config = {'dataset_source': 'openml'
     , 'output_root': './output/'
     }
 
-data = {"X_train": X_train, "y_train":y_train} # requried data format for SMBOX
+data = {"X_train": X, "y_train":y} # requried data format for SMBOX
 
 # use default rf hperparameter search space
 cfg_schema = rf_default_param_space
