@@ -2,9 +2,8 @@ import json
 import pandas as pd
 from typing import Dict, Any
 import hashlib
-from smbox.utils import Logger
 
-logger = Logger()  # Singleton
+logger = None
 
 class ParamSpace:
 
@@ -42,6 +41,9 @@ class ParamSpace:
         KeyError: If a parameter key is not found in the cfg_schema dictionary or in the population_fitness_history DataFrame.
         ValueError: If the population_fitness_history DataFrame does not contain a 'value' column.
         """
+        from smbox.utils import Logger
+        logger = Logger()  # N.B. singleton
+
         if 'value' not in cfg_perf_hist.columns:
             raise ValueError("'value' column not found in population_fitness_history DataFrame.")
 
@@ -65,7 +67,7 @@ class ParamSpace:
                 pivot = cfg_perf_hist.pivot_table(index=param, values='value', aggfunc='mean')
                 best_cat_value = [pivot.sort_values(by='value', ascending=False).index.values[0]]
                 cfg_schema['tune'][param]['categories'] = best_cat_value
-                logger.log(f'Categotical feature {param} value fixed to - {best_cat_value}', 'DEBUG')
+                logger.log(f'Categorical feature {param} value fixed to - {best_cat_value}', 'DEBUG')
 
         return cfg_schema
 

@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from smbox.utils import Logger
 from smbox.paramspace import ParamSpace
 
-logger = Logger()
+logger = None
 
 search_strategy_config_ = {'lf_init_ratio': 0.3
         , 'lf_init_n': 35
@@ -24,6 +24,9 @@ search_strategy_config_ = {'lf_init_ratio': 0.3
 class Optimise:
 
     def __init__(self, config, random_seed, mlflow_tracking=False):
+        global logger
+        if logger is None:
+            logger = Logger()
 
         self.config = config
         self.output_root = config['output_root']
@@ -523,7 +526,7 @@ class Optimise:
 
             logger.log('RUN COMPLETE')
 
-            return best_params
+            return best_params, global_best
 
         except IndexError as e:
             logger.log(f"Error encountered: {e}")

@@ -53,6 +53,7 @@ if __name__ == "__main__":
     from smbox.smbox_config import smbox_params
 
     logger = Logger()
+    #logger = Logger(verbosity_level='DEBUG')
 
     ##---- config
     # Define a configuration dict to hold all key information
@@ -62,7 +63,7 @@ if __name__ == "__main__":
         , 'algorithm': 'rf'
         , 'search_strategy': 'smbox'
         , 'search_strategy_config': smbox_params
-        , 'wallclock': 600
+        , 'wallclock': 300
         , 'output_root': '/Users/salhit/development/smbox/smbox/test/resources/output/'
               }
     logger.log(f'Experiment Config: {config}', 'DEBUG')
