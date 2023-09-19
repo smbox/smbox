@@ -55,10 +55,10 @@ For questions or feedback, please join our [Slack channel.](https://join.slack.c
 import pandas as pd
 import openml
 
-from smbox.Utils import Logger
+from smbox.utils import Logger
 from smbox.smbox_config import smbox_params
-from smbox.ParamSpace import rf_default_param_space
-from smbox.Optimise import Optimise
+from smbox.paramspace import rf_default_param_space
+from smbox.optimise import Optimise
 
 logger = Logger()
 
