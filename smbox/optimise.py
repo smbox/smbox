@@ -437,7 +437,7 @@ class Optimise:
             population_candidates = self.create_population(cfg_schema, search_strategy_config_['lf_init_n'])
             population = ParamSpace.feasiable_check(cfg_schema, population_candidates)
             if not population:
-                raise IndexError("The population list is empty!")
+                raise IndexError(f"The population list is empty! population_candidates: {population_candidates}")
             population_fitness, time_status = self.evaluate_population(population, data_low_fidelity)
             logger.log('Completed initialization', 'DEBUG')
             if search_strategy_config_['lf_ratio'] == 1.00:
