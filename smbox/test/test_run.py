@@ -64,7 +64,7 @@ if __name__ == "__main__":
         , 'search_strategy': 'smbox'
         , 'search_strategy_config': smbox_params
         , 'wallclock': 300
-        , 'output_root': '/Users/salhit/development/smbox/smbox/test/resources/output/'
+        , 'output_root': './smbox/smbox/test/resources/output/'
               }
     logger.log(f'Experiment Config: {config}', 'DEBUG')
     ##----
