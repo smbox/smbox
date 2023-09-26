@@ -54,13 +54,10 @@ For questions or feedback, please join our [Slack channel.](https://join.slack.c
 ```
 import pandas as pd
 import openml
-
 from smbox.utils import Logger
 from smbox.optimise import Optimise
 from smbox.smbox_config import smbox_params
 from smbox.paramspace import rf_default_param_space
-
-logger = Logger()
 
 # Fetch a classification dataset from OpenML
 dataset = openml.datasets.get_dataset(38)
@@ -77,22 +74,27 @@ y = df[target_name]
 X = df.drop(target_name, axis=1)
 X.fillna(0, inplace=True)
 
-# Define a configuration dict to hold all key information
+# Configuration settings for the experiment.
+# This dictionary holds key details for the setup, including dataset details, algorithm choice, search strategy, etc.
+# Some keys enhance the clarity of logs and outputs, ensuring reproducibility and transparency in experiments.
 global config
-config = {'dataset_source': 'openml'
-    , 'dataset': '38'
-    , 'algorithm': 'rf'
-    , 'search_strategy': 'smbox'
-    , 'search_strategy_config': smbox_params
-    , 'wallclock': 600
-    , 'output_root': './output/'
-    }
+config = {
+    'dataset_source': 'openml',               # Dataset's source platform; 'openml' in this instance.
+    'dataset': 38,                            # Unique identifier for the dataset on OpenML.
+    'algorithm': 'rf',                        # Chosen algorithm: Random Forest (denoted as 'rf').
+    'search_strategy': 'smbox',               # Optimization/search strategy, specified as 'smbox'.
+    'search_strategy_config': smbox_params,   # Configuration specifics for 'smbox'. Assumes `smbox_params` is predefined.
+    'wallclock': 600,                         # Maximum time allotted for the task (600 seconds or 10 minutes).
+    'output_root': './output/'                # Directory for saving output/results.
+}
 
-data = {"X_train": X, "y_train":y} # requried data format for SMBOX
+# Create a dictionary with training data. This format is needed for the SMBOX optimizer.
+data = {"X_train": X, "y_train":y}
 
-# use default rf hperparameter search space
+# Use our default hyperparameter search space for a Random Forest algorithm.
 cfg_schema = rf_default_param_space
 
+logger = Logger()
 logger.log(f'-------------Starting SMBOX')
 optimiser = Optimise(config, random_seed=42)
 best_parameters, best_perf = optimiser.SMBOXOptimise(data, cfg_schema)
