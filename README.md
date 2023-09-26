@@ -58,6 +58,7 @@ from smbox.utils import Logger
 from smbox.optimise import Optimise
 from smbox.smbox_config import smbox_params
 from smbox.paramspace import rf_default_param_space
+from smbox.default_objectives import rf_objective
 
 # Fetch a classification dataset from OpenML
 dataset = openml.datasets.get_dataset(38)
@@ -96,7 +97,7 @@ cfg_schema = rf_default_param_space
 
 logger = Logger()
 logger.log(f'-------------Starting SMBOX')
-optimiser = Optimise(config, random_seed=42)
+optimiser = Optimise(config, rf_objective, random_seed=42)
 best_parameters, best_perf = optimiser.SMBOXOptimise(data, cfg_schema)
 ```
 ## Cite

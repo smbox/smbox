@@ -23,13 +23,14 @@ search_strategy_config_ = {'lf_init_ratio': 0.3
 
 class Optimise:
 
-    def __init__(self, config, random_seed, mlflow_tracking=False):
+    def __init__(self, config, objective, random_seed, mlflow_tracking=False):
         global logger
         if logger is None:
             logger = Logger()
 
         self.config = config
         self.output_root = config['output_root']
+        self.objective = objective
         self.random_seed = random_seed
         self.mlflow_tracking = mlflow_tracking
 
@@ -94,40 +95,6 @@ class Optimise:
         return population
 
 
-    def objective(self, cfg, data):
-        from sklearn.ensemble import RandomForestClassifier
-        from xgboost import XGBClassifier
-        from sklearn.model_selection import cross_validate
-        """
-        Evaluate the fitness of each solution of the population.
-    
-        Args:
-            cfg (dict): Hyperparameter configuration space including bounds and types.
-            data (dict): Dataset split into train and test sets.
-    
-        Returns:
-            float: Fitness score.
-    
-        """
-        if self.config['algorithm'] == 'xgb':
-            model = XGBClassifier(**cfg, random_state=42)
-        elif self.config['algorithm'] == 'rf':
-            model = RandomForestClassifier(**cfg, random_state=42)
-        else:
-            raise ValueError("No algorithm provided.")
-
-        cv_results = cross_validate(model,
-                                    data['X_train'],
-                                    data['y_train'],
-                                    scoring='roc_auc',
-                                    cv=4,
-                                    return_train_score=True,
-                                    return_estimator=True)
-
-        perf = cv_results['test_score'].mean()
-
-        return perf
-
     def evaluate_population(self, population, data, trial_counter=0):
         """
         Evaluate a set of hyperparameter configurations (also known as population).
@@ -154,8 +121,9 @@ class Optimise:
                 break
 
             cfg = population[i]  # Parameters to be evaluated
-            optimiser = Optimise(self.config, self.random_seed)
-            perf = optimiser.objective(cfg, data)
+            #optimiser = Optimise(self.config, self.objective, self.random_seed)
+            #perf = optimiser.objective(cfg, data)
+            perf = self.objective(cfg, data)
 
             if self.mlflow_tracking:
                 import mlflow
