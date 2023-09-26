@@ -95,7 +95,7 @@ cfg_schema = rf_default_param_space
 
 logger.log(f'-------------Starting SMBOX')
 optimiser = Optimise(config, random_seed=42)
-best_parameters = optimiser.SMBOXOptimise(data, cfg_schema)
+best_parameters, best_perf = optimiser.SMBOXOptimise(data, cfg_schema)
 ```
 ## Cite
 BibTex
