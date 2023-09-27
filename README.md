@@ -15,17 +15,15 @@
 `smbox` provides a cutting-edge implementation of Sequential Model-Based Optimization (SMBO), tailored for tuning ML algorithm parameters. At its core, SMBO is designed to optimally explore expensive and noisy black-box functions, making it particularly suitable for hyperparameter optimization. With smbox, users can achieve peak performance in their ML models, bypassing the need for exhaustive and time-consuming search methods.
 
 ### Features:
-- 🚂 **State-of-the-art HPO**: Achieve state-of-the-art hyperparameter optimization performance with minimal effort.
+🚂 State-of-the-art HPO: Easily achieve industry-leading hyperparameter optimization results.
 
+🎯 Default Parameter Space: Enjoy plug-and-play convenience for the most popular ML algorithms. No need for defining grid search ranges or complex parameter distributions.
 
-- 🎯 **Default Parameter Space**: Use our default parameter search space to simply plug and play with the most common ML algorithms.
-Making it simpler than defining grid search ranges or complicated parameter search distributions.
+🎯 Custom Parameter Space: Tailor your parameter search space to your unique needs, or modify our default spaces with simplicity.
 
+🤖️ Default Objective Function: Ideal for those using a natively supported ML algorithm.
 
-- 🤖️ **Bring your own Parameter Space**: Provide your own parameter search space to better suit your needs, or update our default search spaces with ease.
-
-
-- 🤖️ **Bring your own Objective Function**: Tune any ML algorithm using the performance metric to suit your needs with. (Coming soon)
+🤖️ Custom Objective Function: Optimise any ML algorithm by selecting the performance metric that best fits your application.
 
 ## 🛠 Installation
 For Users (Non-Developers):
@@ -101,5 +99,4 @@ optimiser = Optimise(config, rf_objective, random_seed=42)
 best_parameters, best_perf = optimiser.SMBOXOptimise(data, cfg_schema)
 ```
 ## Cite
-BibTex
-TBC
+BibTex TBC
