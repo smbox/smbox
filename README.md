@@ -1,6 +1,6 @@
 # smbox
 
-`smbox`:**Sequential Model-Based Optimization eXpress** is a lightweight Python library for Hyperparmeter Optomisimation.
+`smbox`:**Sequential Model-Based Optimization eXpress** is a lightweight Python library for Hyperparameter Optomisimation.
 
 ## Table of Contents
 
@@ -35,7 +35,7 @@ For Developers:
 If you're a developer and intend to contribute or make changes to smbox, you'll want to clone the repository and install in "editable" mode. This ensures that changes you make are immediately reflected in the version of smbox that's used in your Python environment.
 
 1. Clone the repository:
-```git clone https://github.com/Tarek0/smbox.git```
+```git clone https://github.com/smbox/smbox.git```
 2. Navigate to the cloned directory:
 ```cd smbox```
 3. Install in editable mode:
