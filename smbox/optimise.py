@@ -8,6 +8,7 @@ import time
 from datetime import datetime
 from catboost import CatBoostRegressor
 from sklearn.model_selection import train_test_split
+import mlflow
 
 from smbox.utils import Logger
 from smbox.paramspace import ParamSpace
@@ -120,13 +121,14 @@ class Optimise:
                 time_status = 'END'
                 break
 
+            time_limit = t_end - time.time()
             cfg = population[i]  # Parameters to be evaluated
-            #optimiser = Optimise(self.config, self.objective, self.random_seed)
-            #perf = optimiser.objective(cfg, data)
-            perf = self.objective(cfg, data)
+            perf, time_status = self.objective(cfg, data, time_limit)
+            if time_status == 'END':
+                break
 
             if self.mlflow_tracking:
-                import mlflow
+
                 with mlflow.start_run(experiment_id=self.experiment_id):
                     logger.log((cfg, perf), 'DEBUG')
                     mlflow.log_params(cfg)
@@ -407,6 +409,10 @@ class Optimise:
             if not population:
                 raise IndexError(f"The population list is empty! population_candidates: {population_candidates}")
             population_fitness, time_status = self.evaluate_population(population, data_low_fidelity)
+            if len(population_fitness) == 0:
+                logger.log(f'No solutions found within the given time budget.')
+                return {}, 0
+
             logger.log('Completed initialization', 'DEBUG')
             if search_strategy_config_['lf_ratio'] == 1.00:
                 data = data_all
