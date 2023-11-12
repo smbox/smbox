@@ -29,7 +29,7 @@
 For Users (Non-Developers):
 If you just want to use smbox, you can install it directly from the repository:
 ```
-pip install git+https://github.com/Tarek0/smbox.git
+pip install git+https://github.com/smbox/smbox.git
 ```
 For Developers:
 If you're a developer and intend to contribute or make changes to smbox, you'll want to clone the repository and install in "editable" mode. This ensures that changes you make are immediately reflected in the version of smbox that's used in your Python environment.
