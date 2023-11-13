@@ -24,7 +24,7 @@ search_strategy_config_ = {'lf_init_ratio': 0.3
 
 class Optimise:
 
-    def __init__(self, config, objective, random_seed, mlflow_tracking=False):
+    def __init__(self, config, objective, random_seed=42, mlflow_tracking=False, existing_mlflow_exp_name=None):
         global logger
         if logger is None:
             logger = Logger()
@@ -38,14 +38,20 @@ class Optimise:
         if mlflow_tracking:
             import mlflow
 
-            timestamp = datetime.now().strftime("%Y_%m_%d_%H%M%S")
-            # Create a new experiment
-            experiment_name = f"smbox_{timestamp}"
-            mlflow.create_experiment(experiment_name)
-
-            # Get the experiment ID for the new experiment
-            experiment = mlflow.get_experiment_by_name(experiment_name)
-            self.experiment_id = experiment.experiment_id
+            if existing_mlflow_exp_name:
+                experiment = mlflow.get_experiment_by_name(existing_mlflow_exp_name)
+                if experiment is None:
+                    logger.log(f'{existing_mlflow_exp_name} does not exist.')
+                else:
+                    self.experiment_id = experiment.experiment_id
+                    logger.log(f'Continuing mlflow experiment id: {self.experiment_id}, mlflow experiment name: {existing_mlflow_exp_name}')
+            else:
+                timestamp = datetime.now().strftime("%Y_%m_%d_%H%M%S")
+                experiment_name = f"smbox_{timestamp}"
+                mlflow.create_experiment(experiment_name)
+                experiment = mlflow.get_experiment_by_name(experiment_name)
+                self.experiment_id = experiment.experiment_id
+                logger.log(f'mlflow experiment id: {self.experiment_id}, mlflow experiment name: {experiment_name}')
 
     def create_population(self, cfg_schema, population_size):
         """
@@ -131,6 +137,8 @@ class Optimise:
 
                 with mlflow.start_run(experiment_id=self.experiment_id):
                     logger.log((cfg, perf), 'DEBUG')
+                    mlflow.set_tags(self.config)
+                    mlflow.set_tags(self.config['search_strategy_config'])
                     mlflow.log_params(cfg)
                     mlflow.log_metric("perf", perf)
                     mlflow.log_metric("time", time.time())
