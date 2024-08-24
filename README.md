@@ -99,4 +99,14 @@ optimiser = Optimise(config, rf_objective, random_seed=42)
 best_parameters, best_perf = optimiser.SMBOXOptimise(data, cfg_schema)
 ```
 ## Cite
-BibTex TBC
+@InProceedings{10.1007/978-3-031-53966-4_12,
+author="Salhi, Tarek
+and Woodward, John",
+title="SMBOX: A Scalable and Efficient Method for Sequential Model-Based Parameter Optimization",
+booktitle="Machine Learning, Optimization, and Data Science",
+year="2024",
+publisher="Springer Nature Switzerland",
+pages="149--162",
+abstract="The application of Machine Learning (ML) algorithms continues to grow and shows no signs of slowing down. Each ML algorithm has an associated set of hyperparameter values that need to be set to achieve the best performance for each problem. The task of selecting the best parameter values for the problem at hand is known as Hyperparameter Optimisation (HPO). Traditionally this has been carried out manually or by unguided programmatic approaches such as grid or random search. These approaches can be extremely time-consuming and inefficient, especially when dealing with more than a handful of parameters. More advanced methods involving Evolutionary Heuristics [23] or Bayesian Optimisation [17, 28] use a guided search approach and are widely considered as the gold standard approach for hyperparameter optimisation.",
+isbn="978-3-031-53966-4"
+}
