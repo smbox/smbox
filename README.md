@@ -26,21 +26,66 @@
 🤖️ Custom Objective Function: Optimise any ML algorithm by selecting the performance metric that best fits your application.
 
 ## 🛠 Installation
-For Users (Non-Developers):
-If you just want to use smbox, you can install it directly from the repository:
+
+### Using pip (for users)
+If you just want to use smbox, you can install it directly from PyPI:
+```bash
+pip install smbox
 ```
+
+Or install the latest version from GitHub:
+```bash
 pip install git+https://github.com/smbox/smbox.git
 ```
-For Developers:
-If you're a developer and intend to contribute or make changes to smbox, you'll want to clone the repository and install in "editable" mode. This ensures that changes you make are immediately reflected in the version of smbox that's used in your Python environment.
 
-1. Clone the repository:
-```git clone https://github.com/smbox/smbox.git```
-2. Navigate to the cloned directory:
-```cd smbox```
-3. Install in editable mode:
-```pip install -e . ```
+### Using Poetry (recommended for developers)
+If you're a developer and intend to contribute or make changes to smbox, we recommend using Poetry for development:
 
+1. First, install Poetry if you haven't already:
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+2. Clone the repository:
+```bash
+git clone https://github.com/smbox/smbox.git
+cd smbox
+```
+
+3. Install dependencies and set up development environment:
+```bash
+poetry install
+```
+
+4. Activate the virtual environment:
+```bash
+poetry shell
+```
+
+### Development Tools
+The project uses several development tools that are automatically installed with Poetry:
+
+- **Black**: Code formatting
+- **isort**: Import sorting
+- **flake8**: Code linting
+- **mypy**: Static type checking
+- **pytest**: Testing framework
+
+To run the development tools:
+```bash
+# Format code
+poetry run black .
+poetry run isort .
+
+# Run linting
+poetry run flake8 .
+
+# Run type checking
+poetry run mypy .
+
+# Run tests
+poetry run pytest
+```
 
 ## 📄 License
 smbox is released under the MIT License. See the LICENSE file for more details.

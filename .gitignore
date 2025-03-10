@@ -13,3 +13,14 @@ examples/.ipynb_checkpoints/
 
 # mlflow runs
 mlflow/*
+mlruns/
+
+# Local environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Test outputs
+tests/resources/output/
