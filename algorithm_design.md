@@ -2,108 +2,45 @@
 
 ## Process Diagram
 
-```
-+-----------------------------------------------------------------------------------+
-|                            SMBOX HPO Algorithm Flow                               |
-+-----------------------------------------------------------------------------------+
+```mermaid
+flowchart TB
+    subgraph SMBOX ["SMBOX HPO Algorithm Flow"]
+        Input["Input Configuration<br>- Algorithm type<br>- Parameter space<br>- Objective function<br>- Time budget"]
+        Init["Initialization Phase<br>1. Create low-fidelity dataset<br>2. Generate initial random population<br>3. Evaluate initial configurations"]
+        History["Create History Table<br>- Store evaluations<br>- Track global best<br>- Initialize gen = 0"]
+        UpdateSchema["Update Config Schema<br>- Adapt param bounds<br>- Update distributions<br>- Focus on promising regions"]
+        MainLoop["Main Loop"]
+        Response["Fit Response Surface<br>- Train CatBoost model<br>- Learn from history<br>- Predict new configs"]
+        Generate["Generate Candidates<br>- Create large pool<br>- Apply feasibility checks"]
+        Predict["Predict Performance<br>- Score candidates<br>- Rank by predicted performance"]
+        Select["Selection Strategy<br>- Select top configs<br>- Add exploration configs<br>- Add pseudo-random configs"]
+        Evaluate["Evaluate Population<br>- Run objective func<br>- Score configurations<br>- Track performance"]
+        UpdateHist["Update History<br>- Add new evaluations<br>- Update global best<br>- Track improvements"]
+        TimeCheck["Time Budget Check<br>- Continue iteration if time remains<br>- Exit if time up"]
+        TermCheck["Termination Check<br>Is time_status == 'OK'"]
+        Result["Return Best Result<br>- Best parameters<br>- Best performance<br>- Save trials data"]
 
-┌────────────────────────┐
-│  Input Configuration   │
-│  - Algorithm type      │
-│  - Parameter space     │
-│  - Objective function  │
-│  - Time budget         │
-└───────────┬────────────┘
-            │
-            ▼
-┌────────────────────────┐
-│  Initialization Phase  │
-│  1. Create low-fidelity│
-│     dataset (optional) │
-│  2. Generate initial   │
-│     random population  │
-│  3. Evaluate initial   │
-│     configurations     │
-└───────────┬────────────┘
-            │
-            ▼
-┌────────────────────────┐
-│  Create History Table  │
-│  - Store evaluations   │
-│  - Track global best   │
-│  - Initialize gen = 0  │
-└───────────┬────────────┘
-            │
-            ▼
-┌────────────────────────┐
-│  Update Config Schema  │
-│  - Adapt param bounds  │
-│  - Update distributions│
-│  - Focus on promising  │
-│    regions             │
-└───────────┬────────────┘
-            │
-            ▼
-            ┌───────────────────────────────────────┐
-            │              Main Loop                │
-            └─────────────────┬─────────────────────┘
-                              │
-                              ▼
-┌────────────────────────┐    │    ┌────────────────────────┐
-│  Fit Response Surface  │◄───┘───►│  Generate Candidates   │
-│  - Train CatBoost model│         │  - Create large pool   │
-│  - Learn from history  │         │  - Apply feasibility   │
-│  - Predict new configs │         │    checks              │
-└───────────┬────────────┘         └───────────┬────────────┘
-            │                                   │
-            ▼                                   ▼
-┌────────────────────────┐         ┌────────────────────────┐
-│  Predict Performance   │         │  Selection Strategy    │
-│  - Score candidates    │         │  - Select top configs  │
-│  - Rank by predicted   │         │  - Add exploration     │
-│    performance         │         │    configs (random)    │
-└───────────┬────────────┘         │  - Add pseudo-random   │
-            │                       │    configs (optional) │
-            │                       └───────────┬────────────┘
-            └───────────────────►              │
-                                               ▼
-                                 ┌────────────────────────┐
-                                 │  Evaluate Population   │
-                                 │  - Run objective func  │
-                                 │  - Score configurations│
-                                 │  - Track performance   │
-                                 └───────────┬────────────┘
-                                             │
-                                             ▼
-                                 ┌────────────────────────┐
-                                 │  Update History        │
-                                 │  - Add new evaluations │
-                                 │  - Update global best  │
-                                 │  - Track improvements  │
-                                 └───────────┬────────────┘
-                                             │
-                                             ▼
-                                 ┌────────────────────────┐
-              ┌─────────────────►│  Time Budget Check     │
-              │                  │  - Continue iteration  │
-              │                  │    if time remains     │
-              │                  │  - Exit if time up     │
-              │                  └───────────┬────────────┘
-              │                              │
-              │                              ▼
-              │                  ┌────────────────────────┐
-              └──────────No─────┤  Termination Check     │
-                                 │  Is time_status == 'OK'│
-                                 └───────────┬────────────┘
-                                             │
-                                             │ Yes
-                                             ▼
-                                 ┌────────────────────────┐
-                                 │  Return Best Result    │
-                                 │  - Best parameters     │
-                                 │  - Best performance    │
-                                 │  - Save trials data    │
-                                 └────────────────────────┘
+        Input --> Init
+        Init --> History
+        History --> UpdateSchema
+        UpdateSchema --> MainLoop
+        MainLoop --> Response
+        MainLoop --> Generate
+        Response <--> Generate
+        Response --> Predict
+        Generate --> Select
+        Predict --> Select
+        Select --> Evaluate
+        Evaluate --> UpdateHist
+        UpdateHist --> TimeCheck
+        TimeCheck --> TermCheck
+        TermCheck -->|No| MainLoop
+        TermCheck -->|Yes| Result
+    end
+
+    style SMBOX fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style MainLoop fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    style Result fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
 ```
 
 ## Key Components and Features
