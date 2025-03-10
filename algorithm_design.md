@@ -1,4 +1,4 @@
-# SMBOX: Sequential Model-Based Optimization eXpress Algorithm
+# SMBOX: Sequential Model-Based Optimisation eXpress Algorithm
 
 ## Table of Contents
 - [Process Diagram](#process-diagram)
