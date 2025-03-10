@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/825201386405944663/056984cd3d764612b64c0f87f5f18c78/artifacts
+end_time: 1741543246001
+entry_point_name: ''
+experiment_id: '825201386405944663'
+lifecycle_stage: active
+run_id: 056984cd3d764612b64c0f87f5f18c78
+run_name: thoughtful-gnat-961
+run_uuid: 056984cd3d764612b64c0f87f5f18c78
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543245935
+status: 3
+tags: []
+user_id: salhit

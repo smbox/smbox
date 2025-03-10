@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/615986549384458091/aeff979ad55041dda0fe5cef32fed1e4/artifacts
+end_time: 1741542200555
+entry_point_name: ''
+experiment_id: '615986549384458091'
+lifecycle_stage: active
+run_id: aeff979ad55041dda0fe5cef32fed1e4
+run_name: zealous-gnat-95
+run_uuid: aeff979ad55041dda0fe5cef32fed1e4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542200481
+status: 3
+tags: []
+user_id: salhit

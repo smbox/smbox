@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/825201386405944663/eed722489a964e29a36b33622789a88f/artifacts
+end_time: 1741543249549
+entry_point_name: ''
+experiment_id: '825201386405944663'
+lifecycle_stage: active
+run_id: eed722489a964e29a36b33622789a88f
+run_name: welcoming-jay-353
+run_uuid: eed722489a964e29a36b33622789a88f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543249482
+status: 3
+tags: []
+user_id: salhit

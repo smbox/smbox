@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/941348350949836941/f43645bf0006441a9d03f7e2fc1f395d/artifacts
+end_time: 1741543553358
+entry_point_name: ''
+experiment_id: '941348350949836941'
+lifecycle_stage: active
+run_id: f43645bf0006441a9d03f7e2fc1f395d
+run_name: unruly-pig-670
+run_uuid: f43645bf0006441a9d03f7e2fc1f395d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543553270
+status: 3
+tags: []
+user_id: salhit

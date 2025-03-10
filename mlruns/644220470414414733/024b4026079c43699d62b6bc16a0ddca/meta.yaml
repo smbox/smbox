@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/644220470414414733/024b4026079c43699d62b6bc16a0ddca/artifacts
+end_time: 1741543038723
+entry_point_name: ''
+experiment_id: '644220470414414733'
+lifecycle_stage: active
+run_id: 024b4026079c43699d62b6bc16a0ddca
+run_name: enthused-grouse-441
+run_uuid: 024b4026079c43699d62b6bc16a0ddca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543038662
+status: 3
+tags: []
+user_id: salhit

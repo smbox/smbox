@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/205697415168493969/766db5a482274e2fb4bac3acd723c0bb/artifacts
+end_time: 1741543479764
+entry_point_name: ''
+experiment_id: '205697415168493969'
+lifecycle_stage: active
+run_id: 766db5a482274e2fb4bac3acd723c0bb
+run_name: unique-crane-848
+run_uuid: 766db5a482274e2fb4bac3acd723c0bb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543479694
+status: 3
+tags: []
+user_id: salhit

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/458301373631578435/6d13b840c158427a99243cc86a8d6f13/artifacts
+end_time: 1741544639633
+entry_point_name: ''
+experiment_id: '458301373631578435'
+lifecycle_stage: active
+run_id: 6d13b840c158427a99243cc86a8d6f13
+run_name: bouncy-eel-207
+run_uuid: 6d13b840c158427a99243cc86a8d6f13
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544639565
+status: 3
+tags: []
+user_id: salhit

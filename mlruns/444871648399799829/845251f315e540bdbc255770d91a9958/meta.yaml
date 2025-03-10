@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/845251f315e540bdbc255770d91a9958/artifacts
+end_time: 1741547387460
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 845251f315e540bdbc255770d91a9958
+run_name: amusing-sloth-31
+run_uuid: 845251f315e540bdbc255770d91a9958
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547387372
+status: 3
+tags: []
+user_id: salhit

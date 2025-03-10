@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/514768287922009755/519b957e30b847a28e63bf3ba13ba84f/artifacts
+end_time: 1741542945650
+entry_point_name: ''
+experiment_id: '514768287922009755'
+lifecycle_stage: active
+run_id: 519b957e30b847a28e63bf3ba13ba84f
+run_name: sneaky-chimp-394
+run_uuid: 519b957e30b847a28e63bf3ba13ba84f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542945585
+status: 3
+tags: []
+user_id: salhit

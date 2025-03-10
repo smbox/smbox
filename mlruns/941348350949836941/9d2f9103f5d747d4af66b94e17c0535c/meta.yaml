@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/941348350949836941/9d2f9103f5d747d4af66b94e17c0535c/artifacts
+end_time: 1741543544760
+entry_point_name: ''
+experiment_id: '941348350949836941'
+lifecycle_stage: active
+run_id: 9d2f9103f5d747d4af66b94e17c0535c
+run_name: sneaky-hen-695
+run_uuid: 9d2f9103f5d747d4af66b94e17c0535c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543544674
+status: 3
+tags: []
+user_id: salhit

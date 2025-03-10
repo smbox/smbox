@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/205697415168493969/05bd90a2794a4d1ba5b0c3c2f3d95e36/artifacts
+end_time: 1741543326489
+entry_point_name: ''
+experiment_id: '205697415168493969'
+lifecycle_stage: active
+run_id: 05bd90a2794a4d1ba5b0c3c2f3d95e36
+run_name: inquisitive-goat-656
+run_uuid: 05bd90a2794a4d1ba5b0c3c2f3d95e36
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543326423
+status: 3
+tags: []
+user_id: salhit

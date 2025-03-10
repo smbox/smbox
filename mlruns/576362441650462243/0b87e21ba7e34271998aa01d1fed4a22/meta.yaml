@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/576362441650462243/0b87e21ba7e34271998aa01d1fed4a22/artifacts
+end_time: 1741546429389
+entry_point_name: ''
+experiment_id: '576362441650462243'
+lifecycle_stage: active
+run_id: 0b87e21ba7e34271998aa01d1fed4a22
+run_name: upset-gnat-859
+run_uuid: 0b87e21ba7e34271998aa01d1fed4a22
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546429300
+status: 3
+tags: []
+user_id: salhit

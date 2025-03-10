@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/825201386405944663/f52e341e9816448196b2e6d3341eb36e/artifacts
+end_time: 1741543247967
+entry_point_name: ''
+experiment_id: '825201386405944663'
+lifecycle_stage: active
+run_id: f52e341e9816448196b2e6d3341eb36e
+run_name: illustrious-crow-594
+run_uuid: f52e341e9816448196b2e6d3341eb36e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543247900
+status: 3
+tags: []
+user_id: salhit

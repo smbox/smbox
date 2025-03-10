@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/546557184088881462/87d5ef992c3b42c19f4ab3983bcaeba1/artifacts
+end_time: 1741546499826
+entry_point_name: ''
+experiment_id: '546557184088881462'
+lifecycle_stage: active
+run_id: 87d5ef992c3b42c19f4ab3983bcaeba1
+run_name: delicate-pug-582
+run_uuid: 87d5ef992c3b42c19f4ab3983bcaeba1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546499746
+status: 3
+tags: []
+user_id: salhit

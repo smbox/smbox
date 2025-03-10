@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/67b722d6db5a437a9442a73df99a1eb6/artifacts
+end_time: 1741547403584
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 67b722d6db5a437a9442a73df99a1eb6
+run_name: calm-jay-983
+run_uuid: 67b722d6db5a437a9442a73df99a1eb6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547403400
+status: 3
+tags: []
+user_id: salhit

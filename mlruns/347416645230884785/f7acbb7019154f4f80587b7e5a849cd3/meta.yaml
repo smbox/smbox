@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/347416645230884785/f7acbb7019154f4f80587b7e5a849cd3/artifacts
+end_time: 1741544987675
+entry_point_name: ''
+experiment_id: '347416645230884785'
+lifecycle_stage: active
+run_id: f7acbb7019154f4f80587b7e5a849cd3
+run_name: caring-shrike-921
+run_uuid: f7acbb7019154f4f80587b7e5a849cd3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544987612
+status: 3
+tags: []
+user_id: salhit

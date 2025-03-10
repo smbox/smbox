@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/646453562701043464/f2b799d33e6043bd9d0a4338c95375ed/artifacts
+end_time: 1741547687175
+entry_point_name: ''
+experiment_id: '646453562701043464'
+lifecycle_stage: active
+run_id: f2b799d33e6043bd9d0a4338c95375ed
+run_name: popular-frog-412
+run_uuid: f2b799d33e6043bd9d0a4338c95375ed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547687116
+status: 3
+tags: []
+user_id: salhit

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/347416645230884785/24020bf173154c9994736d10c3f30404/artifacts
+end_time: 1741545207664
+entry_point_name: ''
+experiment_id: '347416645230884785'
+lifecycle_stage: active
+run_id: 24020bf173154c9994736d10c3f30404
+run_name: adventurous-mink-989
+run_uuid: 24020bf173154c9994736d10c3f30404
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741545207601
+status: 3
+tags: []
+user_id: salhit

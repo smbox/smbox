@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/347416645230884785/5d18df8170a64a09b13298ca6098fba9/artifacts
+end_time: 1741544985666
+entry_point_name: ''
+experiment_id: '347416645230884785'
+lifecycle_stage: active
+run_id: 5d18df8170a64a09b13298ca6098fba9
+run_name: angry-shoat-446
+run_uuid: 5d18df8170a64a09b13298ca6098fba9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544985605
+status: 3
+tags: []
+user_id: salhit

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/615986549384458091/9fa72b21e00d44a9a7001ffbe6d6e09f/artifacts
+end_time: 1741542192931
+entry_point_name: ''
+experiment_id: '615986549384458091'
+lifecycle_stage: active
+run_id: 9fa72b21e00d44a9a7001ffbe6d6e09f
+run_name: languid-midge-316
+run_uuid: 9fa72b21e00d44a9a7001ffbe6d6e09f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542192868
+status: 3
+tags: []
+user_id: salhit

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/40fa9ba85f044a429236b386c0fd793c/artifacts
+end_time: 1741547404773
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 40fa9ba85f044a429236b386c0fd793c
+run_name: resilient-crow-751
+run_uuid: 40fa9ba85f044a429236b386c0fd793c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547404682
+status: 3
+tags: []
+user_id: salhit

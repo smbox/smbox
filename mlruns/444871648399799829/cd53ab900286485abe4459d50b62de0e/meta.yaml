@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/cd53ab900286485abe4459d50b62de0e/artifacts
+end_time: 1741547382777
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: cd53ab900286485abe4459d50b62de0e
+run_name: rambunctious-elk-854
+run_uuid: cd53ab900286485abe4459d50b62de0e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547382674
+status: 3
+tags: []
+user_id: salhit

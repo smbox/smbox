@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/2adf3e5927db4ed193e26f2cf0ac76e5/artifacts
+end_time: 1741547396739
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 2adf3e5927db4ed193e26f2cf0ac76e5
+run_name: carefree-snail-838
+run_uuid: 2adf3e5927db4ed193e26f2cf0ac76e5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547396646
+status: 3
+tags: []
+user_id: salhit

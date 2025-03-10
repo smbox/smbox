@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/514768287922009755/c529ad7592fd4c84abf1a106f7f2bde0/artifacts
+end_time: 1741542943772
+entry_point_name: ''
+experiment_id: '514768287922009755'
+lifecycle_stage: active
+run_id: c529ad7592fd4c84abf1a106f7f2bde0
+run_name: agreeable-chimp-898
+run_uuid: c529ad7592fd4c84abf1a106f7f2bde0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542943714
+status: 3
+tags: []
+user_id: salhit

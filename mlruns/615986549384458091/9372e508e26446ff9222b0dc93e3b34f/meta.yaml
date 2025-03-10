@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/615986549384458091/9372e508e26446ff9222b0dc93e3b34f/artifacts
+end_time: 1741542189828
+entry_point_name: ''
+experiment_id: '615986549384458091'
+lifecycle_stage: active
+run_id: 9372e508e26446ff9222b0dc93e3b34f
+run_name: abundant-mole-947
+run_uuid: 9372e508e26446ff9222b0dc93e3b34f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542189772
+status: 3
+tags: []
+user_id: salhit

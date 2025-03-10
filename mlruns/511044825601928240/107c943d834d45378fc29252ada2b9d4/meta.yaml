@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/511044825601928240/107c943d834d45378fc29252ada2b9d4/artifacts
+end_time: 1741544695405
+entry_point_name: ''
+experiment_id: '511044825601928240'
+lifecycle_stage: active
+run_id: 107c943d834d45378fc29252ada2b9d4
+run_name: orderly-seal-766
+run_uuid: 107c943d834d45378fc29252ada2b9d4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544695355
+status: 3
+tags: []
+user_id: salhit

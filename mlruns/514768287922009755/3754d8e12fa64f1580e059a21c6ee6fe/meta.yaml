@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/514768287922009755/3754d8e12fa64f1580e059a21c6ee6fe/artifacts
+end_time: 1741542953837
+entry_point_name: ''
+experiment_id: '514768287922009755'
+lifecycle_stage: active
+run_id: 3754d8e12fa64f1580e059a21c6ee6fe
+run_name: glamorous-seal-317
+run_uuid: 3754d8e12fa64f1580e059a21c6ee6fe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542953775
+status: 3
+tags: []
+user_id: salhit

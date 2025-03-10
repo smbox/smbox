@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/471a2db3b45145dfbaddff35eed9c8b1/artifacts
+end_time: 1741547402747
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 471a2db3b45145dfbaddff35eed9c8b1
+run_name: nimble-bird-518
+run_uuid: 471a2db3b45145dfbaddff35eed9c8b1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547402648
+status: 3
+tags: []
+user_id: salhit

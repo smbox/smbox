@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/644220470414414733/d233eb44e88c43a0bafa6877bc3db0c8/artifacts
+end_time: 1741543211020
+entry_point_name: ''
+experiment_id: '644220470414414733'
+lifecycle_stage: active
+run_id: d233eb44e88c43a0bafa6877bc3db0c8
+run_name: blushing-hare-266
+run_uuid: d233eb44e88c43a0bafa6877bc3db0c8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543210951
+status: 3
+tags: []
+user_id: salhit

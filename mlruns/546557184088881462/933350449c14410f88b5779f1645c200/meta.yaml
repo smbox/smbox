@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/546557184088881462/933350449c14410f88b5779f1645c200/artifacts
+end_time: 1741546500630
+entry_point_name: ''
+experiment_id: '546557184088881462'
+lifecycle_stage: active
+run_id: 933350449c14410f88b5779f1645c200
+run_name: abundant-foal-293
+run_uuid: 933350449c14410f88b5779f1645c200
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546500548
+status: 3
+tags: []
+user_id: salhit

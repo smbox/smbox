@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/484182552827794638/df2bb44cfa0243f2862766e8028c3300/artifacts
+end_time: 1741544803673
+entry_point_name: ''
+experiment_id: '484182552827794638'
+lifecycle_stage: active
+run_id: df2bb44cfa0243f2862766e8028c3300
+run_name: kindly-mule-130
+run_uuid: df2bb44cfa0243f2862766e8028c3300
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544803583
+status: 3
+tags: []
+user_id: salhit

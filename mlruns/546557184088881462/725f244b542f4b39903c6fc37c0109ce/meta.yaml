@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/546557184088881462/725f244b542f4b39903c6fc37c0109ce/artifacts
+end_time: 1741546501819
+entry_point_name: ''
+experiment_id: '546557184088881462'
+lifecycle_stage: active
+run_id: 725f244b542f4b39903c6fc37c0109ce
+run_name: receptive-seal-218
+run_uuid: 725f244b542f4b39903c6fc37c0109ce
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546501744
+status: 3
+tags: []
+user_id: salhit

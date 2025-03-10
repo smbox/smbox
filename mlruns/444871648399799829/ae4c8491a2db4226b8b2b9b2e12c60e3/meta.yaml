@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/ae4c8491a2db4226b8b2b9b2e12c60e3/artifacts
+end_time: 1741547398174
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: ae4c8491a2db4226b8b2b9b2e12c60e3
+run_name: unruly-auk-951
+run_uuid: ae4c8491a2db4226b8b2b9b2e12c60e3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547398094
+status: 3
+tags: []
+user_id: salhit

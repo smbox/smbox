@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/546557184088881462/a443958db7514b528edffd20977b4447/artifacts
+end_time: 1741546496987
+entry_point_name: ''
+experiment_id: '546557184088881462'
+lifecycle_stage: active
+run_id: a443958db7514b528edffd20977b4447
+run_name: thoughtful-shad-736
+run_uuid: a443958db7514b528edffd20977b4447
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546496917
+status: 3
+tags: []
+user_id: salhit

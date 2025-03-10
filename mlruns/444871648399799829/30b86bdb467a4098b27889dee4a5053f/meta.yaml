@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/30b86bdb467a4098b27889dee4a5053f/artifacts
+end_time: 1741547394886
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 30b86bdb467a4098b27889dee4a5053f
+run_name: dashing-pig-621
+run_uuid: 30b86bdb467a4098b27889dee4a5053f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547394783
+status: 3
+tags: []
+user_id: salhit

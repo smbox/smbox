@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/ac94862bfbcf49c39f02417ebdbe267e/artifacts
+end_time: 1741547399552
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: ac94862bfbcf49c39f02417ebdbe267e
+run_name: enthused-boar-606
+run_uuid: ac94862bfbcf49c39f02417ebdbe267e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547399458
+status: 3
+tags: []
+user_id: salhit

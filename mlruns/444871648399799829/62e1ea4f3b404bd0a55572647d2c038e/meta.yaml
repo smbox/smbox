@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/62e1ea4f3b404bd0a55572647d2c038e/artifacts
+end_time: 1741547461272
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 62e1ea4f3b404bd0a55572647d2c038e
+run_name: gaudy-mare-905
+run_uuid: 62e1ea4f3b404bd0a55572647d2c038e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547461176
+status: 3
+tags: []
+user_id: salhit

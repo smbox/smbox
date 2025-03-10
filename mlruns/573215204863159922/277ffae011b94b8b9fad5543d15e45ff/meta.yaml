@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/573215204863159922/277ffae011b94b8b9fad5543d15e45ff/artifacts
+end_time: 1741542734736
+entry_point_name: ''
+experiment_id: '573215204863159922'
+lifecycle_stage: active
+run_id: 277ffae011b94b8b9fad5543d15e45ff
+run_name: luxuriant-lamb-452
+run_uuid: 277ffae011b94b8b9fad5543d15e45ff
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542734677
+status: 3
+tags: []
+user_id: salhit

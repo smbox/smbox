@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/825201386405944663/0dfc3bf30d4642b5893dde126e3c9c8f/artifacts
+end_time: 1741543478905
+entry_point_name: ''
+experiment_id: '825201386405944663'
+lifecycle_stage: active
+run_id: 0dfc3bf30d4642b5893dde126e3c9c8f
+run_name: bald-duck-959
+run_uuid: 0dfc3bf30d4642b5893dde126e3c9c8f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543478830
+status: 3
+tags: []
+user_id: salhit

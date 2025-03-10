@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/458301373631578435/6c82a6ce8c454272bf6ebb7e80d7eb98/artifacts
+end_time: 1741544573566
+entry_point_name: ''
+experiment_id: '458301373631578435'
+lifecycle_stage: active
+run_id: 6c82a6ce8c454272bf6ebb7e80d7eb98
+run_name: useful-smelt-838
+run_uuid: 6c82a6ce8c454272bf6ebb7e80d7eb98
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544573499
+status: 3
+tags: []
+user_id: salhit

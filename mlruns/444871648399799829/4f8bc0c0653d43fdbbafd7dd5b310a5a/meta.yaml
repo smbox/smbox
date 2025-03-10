@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/4f8bc0c0653d43fdbbafd7dd5b310a5a/artifacts
+end_time: 1741547398983
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 4f8bc0c0653d43fdbbafd7dd5b310a5a
+run_name: likeable-ox-693
+run_uuid: 4f8bc0c0653d43fdbbafd7dd5b310a5a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547398869
+status: 3
+tags: []
+user_id: salhit

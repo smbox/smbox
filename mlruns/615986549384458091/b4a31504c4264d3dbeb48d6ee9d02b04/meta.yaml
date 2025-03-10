@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/615986549384458091/b4a31504c4264d3dbeb48d6ee9d02b04/artifacts
+end_time: 1741542202758
+entry_point_name: ''
+experiment_id: '615986549384458091'
+lifecycle_stage: active
+run_id: b4a31504c4264d3dbeb48d6ee9d02b04
+run_name: gaudy-sponge-203
+run_uuid: b4a31504c4264d3dbeb48d6ee9d02b04
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542202698
+status: 3
+tags: []
+user_id: salhit

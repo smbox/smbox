@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/a7f62ee19c9b488fb956d4400c817c56/artifacts
+end_time: 1741547401765
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: a7f62ee19c9b488fb956d4400c817c56
+run_name: merciful-moth-438
+run_uuid: a7f62ee19c9b488fb956d4400c817c56
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547401670
+status: 3
+tags: []
+user_id: salhit

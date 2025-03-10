@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/941348350949836941/adb7712bc03a4c55875b4a755e5eb411/artifacts
+end_time: 1741543556890
+entry_point_name: ''
+experiment_id: '941348350949836941'
+lifecycle_stage: active
+run_id: adb7712bc03a4c55875b4a755e5eb411
+run_name: gregarious-lark-625
+run_uuid: adb7712bc03a4c55875b4a755e5eb411
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741543556806
+status: 3
+tags: []
+user_id: salhit

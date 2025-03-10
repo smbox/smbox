@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/8d03df8d638e4613b28ed59513ebb71b/artifacts
+end_time: 1741547502168
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: 8d03df8d638e4613b28ed59513ebb71b
+run_name: spiffy-mole-329
+run_uuid: 8d03df8d638e4613b28ed59513ebb71b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547502075
+status: 3
+tags: []
+user_id: salhit

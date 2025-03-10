@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/615986549384458091/e9a68427ae574d609f29dcaf361c07ac/artifacts
+end_time: 1741542187420
+entry_point_name: ''
+experiment_id: '615986549384458091'
+lifecycle_stage: active
+run_id: e9a68427ae574d609f29dcaf361c07ac
+run_name: upbeat-deer-260
+run_uuid: e9a68427ae574d609f29dcaf361c07ac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741542187350
+status: 3
+tags: []
+user_id: salhit

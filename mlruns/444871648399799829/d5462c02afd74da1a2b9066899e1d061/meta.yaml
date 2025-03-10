@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/444871648399799829/d5462c02afd74da1a2b9066899e1d061/artifacts
+end_time: 1741547599470
+entry_point_name: ''
+experiment_id: '444871648399799829'
+lifecycle_stage: active
+run_id: d5462c02afd74da1a2b9066899e1d061
+run_name: treasured-snipe-315
+run_uuid: d5462c02afd74da1a2b9066899e1d061
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741547599365
+status: 3
+tags: []
+user_id: salhit

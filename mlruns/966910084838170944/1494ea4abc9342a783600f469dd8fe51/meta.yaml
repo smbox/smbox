@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/966910084838170944/1494ea4abc9342a783600f469dd8fe51/artifacts
+end_time: 1741546920086
+entry_point_name: ''
+experiment_id: '966910084838170944'
+lifecycle_stage: active
+run_id: 1494ea4abc9342a783600f469dd8fe51
+run_name: salty-crow-659
+run_uuid: 1494ea4abc9342a783600f469dd8fe51
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546920004
+status: 3
+tags: []
+user_id: salhit

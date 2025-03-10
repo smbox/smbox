@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/546557184088881462/b566e608de6a4eabaa210fb1b41548b0/artifacts
+end_time: 1741546502157
+entry_point_name: ''
+experiment_id: '546557184088881462'
+lifecycle_stage: active
+run_id: b566e608de6a4eabaa210fb1b41548b0
+run_name: sneaky-lark-812
+run_uuid: b566e608de6a4eabaa210fb1b41548b0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546502085
+status: 3
+tags: []
+user_id: salhit

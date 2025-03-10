@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/966910084838170944/e3fca893c5974ab1b648d8f739c035b7/artifacts
+end_time: 1741546790896
+entry_point_name: ''
+experiment_id: '966910084838170944'
+lifecycle_stage: active
+run_id: e3fca893c5974ab1b648d8f739c035b7
+run_name: defiant-roo-86
+run_uuid: e3fca893c5974ab1b648d8f739c035b7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546790812
+status: 3
+tags: []
+user_id: salhit

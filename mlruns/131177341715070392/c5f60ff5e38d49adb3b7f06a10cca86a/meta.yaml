@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/131177341715070392/c5f60ff5e38d49adb3b7f06a10cca86a/artifacts
+end_time: 1741545112257
+entry_point_name: ''
+experiment_id: '131177341715070392'
+lifecycle_stage: active
+run_id: c5f60ff5e38d49adb3b7f06a10cca86a
+run_name: learned-hen-561
+run_uuid: c5f60ff5e38d49adb3b7f06a10cca86a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741545112197
+status: 3
+tags: []
+user_id: salhit

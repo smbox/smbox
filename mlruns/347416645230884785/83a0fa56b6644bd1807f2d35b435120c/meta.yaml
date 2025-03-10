@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/347416645230884785/83a0fa56b6644bd1807f2d35b435120c/artifacts
+end_time: 1741544984010
+entry_point_name: ''
+experiment_id: '347416645230884785'
+lifecycle_stage: active
+run_id: 83a0fa56b6644bd1807f2d35b435120c
+run_name: incongruous-bass-111
+run_uuid: 83a0fa56b6644bd1807f2d35b435120c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544983965
+status: 3
+tags: []
+user_id: salhit

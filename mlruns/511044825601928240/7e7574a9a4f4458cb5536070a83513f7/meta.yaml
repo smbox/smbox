@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/511044825601928240/7e7574a9a4f4458cb5536070a83513f7/artifacts
+end_time: 1741544686779
+entry_point_name: ''
+experiment_id: '511044825601928240'
+lifecycle_stage: active
+run_id: 7e7574a9a4f4458cb5536070a83513f7
+run_name: loud-jay-620
+run_uuid: 7e7574a9a4f4458cb5536070a83513f7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544686729
+status: 3
+tags: []
+user_id: salhit

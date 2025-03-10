@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/347416645230884785/fe1bea5aa0ac4681915e78221b2e5fd7/artifacts
+end_time: 1741544990505
+entry_point_name: ''
+experiment_id: '347416645230884785'
+lifecycle_stage: active
+run_id: fe1bea5aa0ac4681915e78221b2e5fd7
+run_name: flawless-jay-804
+run_uuid: fe1bea5aa0ac4681915e78221b2e5fd7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741544990456
+status: 3
+tags: []
+user_id: salhit

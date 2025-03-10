@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/salhit/development/smbox/mlruns/966910084838170944/6894fd8b06d845f58b92d01aeea547da/artifacts
+end_time: 1741546792749
+entry_point_name: ''
+experiment_id: '966910084838170944'
+lifecycle_stage: active
+run_id: 6894fd8b06d845f58b92d01aeea547da
+run_name: clumsy-auk-47
+run_uuid: 6894fd8b06d845f58b92d01aeea547da
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741546792675
+status: 3
+tags: []
+user_id: salhit
