@@ -20,18 +20,18 @@ flowchart TD
     classDef header fill:white,stroke:none,color:black,font-size:20px,font-weight:bold;
     
     subgraph SMBOX[" "]
-        DiagramTitle["SMBOX HPO Algorithm Flow"]:::header
+       
         
         %% Setup Phase
-        subgraph Setup["Initialization & Setup"]
+        subgraph Setup["Initialisation & Setup"]
             Input["Input Configuration<br><br>• Algorithm type<br>• Parameter space<br>• Objective function<br>• Time budget"]
-            Init["Initialization Phase<br><br>1. Create low-fidelity dataset<br>2. Generate initial random population<br>3. Evaluate initial configurations"]
-            History["Create History Table<br><br>• Store evaluations<br>• Track global best<br>• Initialize gen = 0"]
+            Init["Initialisation Phase<br><br>1. Create low-fidelity dataset<br>2. Generate initial random population<br>3. Evaluate initial configurations"]
+            History["Create History Table<br><br>• Store evaluations<br>• Track global best<br>• Initialise gen = 0"]
             UpdateSchema["Update Config Schema<br><br>• Adapt param bounds<br>• Update distributions<br>• Focus on promising regions"]
         end
         
-        %% Optimization Loop
-        subgraph Loop["Main Optimization Loop"]
+        %% Optimisation Loop
+        subgraph Loop["Main Optimisation Loop"]
             MainLoop["Main Loop"]
             
             subgraph ModelFit["Model Training & Prediction"]
@@ -90,9 +90,9 @@ flowchart TD
 
 ## Key Components and Features
 
-SMBOX consists of several key components that work together to efficiently optimize hyperparameters:
+SMBOX consists of several key components that work together to efficiently optimise hyperparameters:
 
-1. **Initialization Phase**
+1. **Initialisation Phase**
    - Creates a low-fidelity dataset for faster initial evaluation (if configured)
    - Generates an initial population of random hyperparameter configurations
    - Evaluates these initial configurations to build a foundation for learning
@@ -124,12 +124,12 @@ SMBOX consists of several key components that work together to efficiently optim
 
 7. **Performance Tracking**
    - Logs all evaluations and tracks global best
-   - Monitors improvements throughout the optimization process
+   - Monitors improvements throughout the optimisation process
    - Integrates with MLflow for experiment tracking (when enabled)
 
 ## Algorithm Details
 
-The SMBOX (Sequential Model-Based Optimization eXpress) algorithm efficiently navigates the hyperparameter space by learning from previous evaluations, focusing on promising regions, and maintaining a balance between exploration and exploitation. This approach is particularly effective for expensive black-box optimization problems like hyperparameter tuning.
+The SMBOX (Sequential Model-Based Optimisation eXpress) algorithm efficiently navigates the hyperparameter space by learning from previous evaluations, focusing on promising regions, and maintaining a balance between exploration and exploitation. This approach is particularly effective for expensive black-box optimisation problems like hyperparameter tuning.
 
 ### How It Works
 
@@ -147,16 +147,16 @@ The algorithm is controlled by several meta-parameters that determine its behavi
 
 | Parameter | Description | Typical Values |
 |-----------|-------------|----------------|
-| `lf_init_ratio` | Ratio for low-fidelity dataset creation during initialization | 0.1 - 0.3 |
+| `lf_init_ratio` | Ratio for low-fidelity dataset creation during initialisation | 0.1 - 0.3 |
 | `lf_init_n` | Number of initial random configurations to evaluate | 10 - 30 |
-| `lf_ratio` | Ratio for low-fidelity dataset during main optimization | 0.1 - 0.5 |
+| `lf_ratio` | Ratio for low-fidelity dataset during main optimisation | 0.1 - 0.5 |
 | `alpha_n` | Number of top candidates to select in each iteration | 5 - 20 |
 | `inc_rand` | Whether to include random configurations | Y/N |
 | `inc_pseudo_rand` | Whether to include pseudo-random configurations | Y/N |
 
 ### Benefits of SMBOX
 
-1. **Efficiency**: Optimizes expensive hyperparameter configurations with fewer evaluations
+1. **Efficiency**: Optimises expensive hyperparameter configurations with fewer evaluations
 2. **Adaptability**: Adjusts search space based on promising areas
 3. **Balance**: Maintains effective exploration-exploitation trade-off
 4. **Time-awareness**: Works within specified time constraints
@@ -165,11 +165,11 @@ The algorithm is controlled by several meta-parameters that determine its behavi
 
 ## Implementation Notes
 
-SMBOX is designed to be easy to use while providing powerful optimization capabilities. Here are some implementation considerations:
+SMBOX is designed to be easy to use while providing powerful optimisation capabilities. Here are some implementation considerations:
 
 - **Default Parameter Spaces**: SMBOX includes pre-defined parameter spaces for common ML algorithms (Random Forest, XGBoost, etc.)
-- **Custom Objectives**: Users can define their own objective functions to optimize any metric
-- **Integration with MLflow**: Results can be tracked and visualized using MLflow
+- **Custom Objectives**: Users can define their own objective functions to optimise any metric
+- **Integration with MLflow**: Results can be tracked and visualised using MLflow
 - **Time Management**: The algorithm respects time budgets and gracefully terminates when time is up
 
 For code examples and usage patterns, please refer to the [README.md](README.md) file. 
